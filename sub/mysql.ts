@@ -9,9 +9,11 @@ connection = mysql.createConnection({
   database : constant.schema
 });
 
-connection.connect(function(err: any) {
-  if (err) {
-      console.error("DB connection error =", err);
-      return;
-  }
+// var sql = `SELECT * FROM ramen.api;`
+// var sql = `truncate table ramen.api`
+var sql = `INSERT INTO ${constant.schema}.api(name,address,open) values("a","i","u");`;
+connection.query(sql, function (error:any, results:any, fields:any) {
+  console.log(error)
+  console.log(results)
+  console.log(fields)
 });
