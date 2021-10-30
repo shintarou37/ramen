@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "ts-node-dev --respawn ./bin/www",
-    "tn": "ts-node ./sub/api.ts"
+    "tn": "ts-node ./sub/api.ts",
+    "tm": "ts-node ./sub/mysql.ts"
   },
   "dependencies": {
     "child_process": "^1.0.2",
