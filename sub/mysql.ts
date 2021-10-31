@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const result = require('./result');
 var constant = require('./.token');
+
 var connection
 
 connection = mysql.createConnection({
@@ -11,9 +12,10 @@ connection = mysql.createConnection({
 
 // var sql = `SELECT * FROM ramen.api;`
 // var sql = `truncate table ramen.api`
-var sql = `INSERT INTO ${constant.schema}.api(name,address,open) values("a","i","u");`;
-connection.query(sql, function (error:any, results:any, fields:any) {
-  console.log(error)
-  console.log(results)
-  console.log(fields)
-});
+console.log(result.length)
+// var sql = `INSERT INTO ${constant.schema}.api(name,address,open) values("a","i","u");`;
+// connection.query(sql, function (error:any, results:any, fields:any) {
+//   // console.log(error)
+//   // console.log(results)
+//   // console.log(fields)
+// });
