@@ -9,13 +9,19 @@ connection = mysql.createConnection({
   user     : constant.user,
   database : constant.schema
 });
-
-// var sql = `SELECT * FROM ramen.api;`
+// レコード全削除
 // var sql = `truncate table ramen.api`
-console.log(result.length)
-// var sql = `INSERT INTO ${constant.schema}.api(name,address,open) values("a","i","u");`;
+// var sql = `truncate table ramen.middle_area`
+
+var sql : string = ""
+for(let i : number = 0; i < result.length; i++){
+  if(! sql.includes(`${result[i].middle_area.name}`))
+    sql += `INSERT INTO ${constant.schema}.middle_area(name) values("${result[i].middle_area.name}");`;
+}
 // connection.query(sql, function (error:any, results:any, fields:any) {
-//   // console.log(error)
-//   // console.log(results)
-//   // console.log(fields)
+//   console.log(error)
+//   console.log(results)
+//   console.log(fields)
 // });
+
+// connection.end()

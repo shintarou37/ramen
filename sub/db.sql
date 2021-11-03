@@ -1,9 +1,17 @@
-CREATE TABLE `ramen`.`api` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `address` VARCHAR(100) NOT NULL,
-  `middle_area` VARCHAR(50) NOT NULL,
-  `open` VARCHAR(45) NULL,
+CREATE TABLE `api` (
+  `id` int(10) unsigned NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `open` varchar(45) NOT NULL,
+  `middle_area_id` int(10) NOT NULL,
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `middle_area` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC));
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8
+
+INSERT INTO ramen.middle_area(name) values("東京・大手町・日本橋・人形町");INSERT INTO ramen.middle_area(name) values("中野・高円寺・阿佐ヶ谷・方南町");INSERT INTO ramen.middle_area(name) values("池袋");INSERT INTO ramen.middle_area(name) values("赤羽・王子・十条");INSERT INTO ramen.middle_area(name) values("上野・御徒町・浅草");INSERT INTO ramen.middle_area(name) values("都営三田線（新板橋～西高島平）");INSERT INTO ramen.middle_area(name) values("聖蹟桜ヶ丘・高幡不動・分倍河原");INSERT INTO ramen.middle_area(name) values("神田・神保町・秋葉原・御茶ノ水");INSERT INTO ramen.middle_area(name) values("品川･目黒･田町･浜松町･五反田");INSERT INTO ramen.middle_area(name) values("錦糸町・浅草橋・両国・亀戸");INSERT INTO ramen.middle_area(name) values("銀座・有楽町・新橋・築地・月島");INSERT INTO ramen.middle_area(name) values("蒲田・大森・大田区");INSERT INTO ramen.middle_area(name) values("練馬・板橋・成増・江古田");INSERT INTO ramen.middle_area(name) values("大井町･中延･旗の台･戸越･馬込");INSERT INTO ramen.middle_area(name) values("調布・府中・千歳烏山・仙川");INSERT INTO ramen.middle_area(name) values("水道橋・飯田橋・神楽坂");INSERT INTO ramen.middle_area(name) values("渋谷");INSERT INTO ramen.middle_area(name) values("巣鴨・大塚・駒込");INSERT INTO ramen.middle_area(name) values("八王子・立川");INSERT INTO ramen.middle_area(name) values("新宿");INSERT INTO ramen.middle_area(name) values("西武新宿線(中井～田無～東村山)");INSERT INTO ramen.middle_area(name) values("青梅・昭島・小作・青梅線沿線");INSERT INTO ramen.middle_area(name) values("恵比寿・中目黒・代官山・広尾");INSERT INTO ramen.middle_area(name) values("池尻大橋・三軒茶屋・駒沢大学");INSERT INTO ramen.middle_area(name) values("高田馬場");INSERT INTO ramen.middle_area(name) values("町田");INSERT INTO ramen.middle_area(name) values("赤坂・六本木・麻布十番・西麻布");INSERT INTO ramen.middle_area(name) values("門前仲町・東陽町・木場・葛西");INSERT INTO ramen.middle_area(name) values("四ツ谷・麹町・市ヶ谷・九段下");INSERT INTO ramen.middle_area(name) values("北千住・日暮里・葛飾・荒川");INSERT INTO ramen.middle_area(name) values("幡ヶ谷・笹塚・明大前・下高井戸");INSERT INTO ramen.middle_area(name) values("国立・国分寺");INSERT INTO ramen.middle_area(name) values("お台場");INSERT INTO ramen.middle_area(name) values("吉祥寺・荻窪・三鷹");INSERT INTO ramen.middle_area(name) values("西武池袋線（石神井公園～秋津）");INSERT INTO ramen.middle_area(name) values("東京都その他");INSERT INTO ramen.middle_area(name) values("桜新町・用賀・二子玉川");INSERT INTO ramen.middle_area(name) values("武蔵小金井");INSERT INTO ramen.middle_area(name) values("祖師ヶ谷大蔵・成城学園前");INSERT INTO ramen.middle_area(name) values("多摩センター・南大沢");INSERT INTO ramen.middle_area(name) values("不動前・武蔵小山");INSERT INTO ramen.middle_area(name) values("原宿・青山・表参道");INSERT INTO ramen.middle_area(name) values("祐天寺・学芸大学・都立大学");INSERT INTO ramen.middle_area(name) values("下北沢・代々木上原");INSERT INTO ramen.middle_area(name) values("経堂・千歳船橋");INSERT INTO ramen.middle_area(name) values("雪が谷大塚・池上");INSERT INTO ramen.middle_area(name) values("新大久保・大久保");INSERT INTO ramen.middle_area(name) values("自由が丘・田園調布");
