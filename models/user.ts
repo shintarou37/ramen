@@ -1,5 +1,5 @@
 'use strict';
-const {
+var {
   Model
 } = require('sequelize');
 module.exports = (sequelize:any, DataTypes:any) => {

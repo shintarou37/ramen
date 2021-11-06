@@ -1,6 +1,6 @@
 'use strict';
-const {
-  Model :any
+var {
+  Model 
 } = require('sequelize');
 module.exports = (sequelize:any, DataTypes:any) => {
   class api extends Model {
