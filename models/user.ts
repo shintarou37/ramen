@@ -14,9 +14,12 @@ module.exports = (sequelize:any, DataTypes:any) => {
     }
   };
   user.init({
+    id: DataTypes.INTEGER,
     name: DataTypes.STRING,
     pass: DataTypes.STRING,
-    status: DataTypes.INTEGER
+    status: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'user',
