@@ -31,11 +31,11 @@ User.init(
       primaryKey: true,
     },
     name: {
-      type: new DataTypes.STRING(128),
+      type: new DataTypes.STRING,
       allowNull: false,
     },
     pass: {
-      type: new DataTypes.STRING(128),
+      type: new DataTypes.STRING,
       allowNull: false,
     },
     status: {
@@ -53,44 +53,14 @@ User.init(
   },
   {
     tableName: "users",
-    sequelize, // passing the `sequelize` instance is required
+    sequelize, 
   }
 );
 new User
-async function doStuff() {
-    const instance =  User.findByPk(1);
-  // console.log(instance);
+function getUser() {
+  const instance = User.findByPk(1);
+  console.log(typeof instance)
   return instance
 }
-// doStuff()
 
-export { User,doStuff}
-
-// 'use strict';
-// var {
-//   Model
-// } = require('sequelize');
-// module.exports = (sequelize:any, DataTypes:any) => {
-//   class user extends Model {
-//     /**
-//      * Helper method for defining associations.
-//      * This method is not a part of Sequelize lifecycle.
-//      * The `models/index` file will call this method automatically.
-//      */
-//     static associate(models:any) {
-//       // define association here
-//     }
-//   };
-//   user.init({
-//     id: DataTypes.INTEGER,
-//     name: DataTypes.STRING,
-//     pass: DataTypes.STRING,
-//     status: DataTypes.INTEGER,
-//     createdAt: DataTypes.DATE,
-//     updatedAt: DataTypes.DATE
-//   }, {
-//     sequelize,
-//     modelName: 'user'
-//   });
-//   return user;
-// };
+export { User, getUser }
