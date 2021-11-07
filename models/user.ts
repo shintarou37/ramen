@@ -12,18 +12,6 @@ import {
 
 const sequelize = new Sequelize("mysql://root@localhost:3306/ramen");
 
-// These are all the attributes in the User model
-// interface UserAttributes {
-//   id: number;
-//   name: string;
-//   pass: string;
-//   status: number;
-//   createdAt:Date;
-//   updatedAt:Date;
-// }
-
-// Some attributes are optional in `User.build` and `User.create` calls
-
 class User extends Model
  {
   public id!: number; // Note that the `null assertion` `!` is required in strict mode.
@@ -70,12 +58,13 @@ User.init(
 );
 new User
 async function doStuff() {
-  const instance = await User.findByPk(1, {
-    rejectOnEmpty: true,
-  });
-  console.log(instance);
+    const instance =  User.findByPk(1);
+  // console.log(instance);
+  return instance
 }
-doStuff()
+// doStuff()
+
+export { User,doStuff}
 
 // 'use strict';
 // var {
