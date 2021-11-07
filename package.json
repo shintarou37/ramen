@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn ./bin/www",
     "tn": "ts-node ./sub/api.ts",
     "tm": "ts-node ./sub/mysql.ts",
-    "tmi": "ts-node ./models/middle_area.ts"
+    "tmu": "ts-node ./models/user.ts"
   },
   "dependencies": {
     "@types/validator": "^13.6.6",
@@ -22,7 +22,7 @@
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3-rc.0",
-    "sequelize": "^6.9.0",
+    "sequelize": "^5.22.4",
     "sequelize-cli": "^6.3.0"
   },
   "devDependencies": {
