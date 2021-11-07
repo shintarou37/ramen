@@ -6,9 +6,11 @@
     "start": "node ./bin/www",
     "dev": "ts-node-dev --respawn ./bin/www",
     "tn": "ts-node ./sub/api.ts",
-    "tm": "ts-node ./sub/mysql.ts"
+    "tm": "ts-node ./sub/mysql.ts",
+    "tmi": "ts-node ./models/middle_area.ts"
   },
   "dependencies": {
+    "@types/validator": "^13.6.6",
     "async": "^3.2.2",
     "child_process": "^1.0.2",
     "cookie-parser": "~1.4.4",
