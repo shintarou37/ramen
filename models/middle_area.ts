@@ -1,21 +1,21 @@
+import {
+  Sequelize,
+  Model,
+  DataTypes,
+  HasManyGetAssociationsMixin,
+  HasManyAddAssociationMixin,
+  HasManyHasAssociationMixin,
+  Association,
+  HasManyCountAssociationsMixin,
+  HasManyCreateAssociationMixin,
+} from "sequelize";
 
-import { Sequelize, Model, DataTypes } from "sequelize";
+const sequelize = new Sequelize("mysql://root@localhost:3306/ramen");
 
-const sequelize = new Sequelize("mysql://root:@localhost:3306/ramen");
-
-class MiddleArea extends Model {
+class MiddleArea extends Model
+ {
   public id!: number; // Note that the `null assertion` `!` is required in strict mode.
   public name!: string;
-  public createdAt!: number | null; // for nullable fields
-  public updatedAt!: number | null; // for nullable fields
-
-  static associate(models:any) {
-    // define association here
-  }
-  static te(models:any) {
-    console.log("static teが呼び出された")
-  }
-
 }
 
 MiddleArea.init(
@@ -26,74 +26,30 @@ MiddleArea.init(
       primaryKey: true,
     },
     name: {
-      type: new DataTypes.STRING(128),
+      type: new DataTypes.STRING,
       allowNull: false,
+    },
+    createdAt: {
+      type: new DataTypes.DATE,
+      allowNull: true,
+      defaultValue: new Date()
+    },
+    updatedAt: {
+      type: new DataTypes.DATE,
+      allowNull: true,
+      defaultValue: new Date()
     }
   },
   {
-    tableName: "user",
-    sequelize, // passing the `sequelize` instance is required
+    tableName: "api",
+    sequelize, 
   }
 );
-
-function ga() {
-  console.log("ga が呼び出された")
+new MiddleArea
+function getMiddleArea() {
+  const instance = MiddleArea.findByPk(1);
+  console.log(typeof instance)
+  return instance
 }
-module.exports = MiddleArea,ga()
 
-// async function doStuffWithUserModel() {
-//   const newUser = await MiddleArea.create({
-//     name: "Johnny",
-//   });
-//   console.log(newUser.id, newUser.name,);
-
-//   const foundUser = await MiddleArea.findOne({ where: { name: "Johnny" } });
-//   if (foundUser === null) return;
-//   console.log(foundUser.name);
-// }
-
-
-// module.exports = da
-// var {
-//   Model
-// } = require('sequelize');
-// module.exports = (sequelize:any, DataTypes:any) => {
-//   class middle_area extends Model {
-//     /**
-//      * Helper method for defining associations.
-//      * This method is not a part of Sequelize lifecycle.
-//      * The `models/index` file will call this method automatically.
-//      */
-//     static associate(models:any) {
-//       // define association here
-//     }
-//     static test(models:any) {
-//       console.log("start")
-//       // models.findAll().then((results)=>{
-//       //   console.log(results)
-//       // })
-//     }
-
-//   };
-//   middle_area.init({
-//     id: {
-//       type: DataTypes.INTEGER,
-//       allowNull: false,
-//       autoIncrement: true,
-//       primaryKey: true,
-//       defaultValue: null
-//     },
-//     name: DataTypes.STRING,
-    
-//   }, {
-//     sequelize,
-//     modelName: 'middle_area',
-//     classMethods: {
-//       test1: function () {
-//         console.log("fengoijergegseger")
-//       },
-//     }
-//   });
-//   return middle_area;
-  
-// };
+export { getMiddleArea }
