@@ -10,6 +10,10 @@ import {
   HasManyCreateAssociationMixin,
 } from "sequelize";
 
+import {
+  Api,
+} from "./api";
+
 const sequelize = new Sequelize("mysql://root@localhost:3306/ramen");
 
 class MiddleArea extends Model
@@ -45,11 +49,20 @@ MiddleArea.init(
     sequelize, 
   }
 );
+MiddleArea.hasMany(Api, {
+  sourceKey: "id",
+  foreignKey: "middle_area_id",
+  as: "middle_areas", // this determines the name in `associations`!
+});
 new MiddleArea
+function getIndex() {
+  const get_index_result = MiddleArea.findAll({include:[MiddleArea.associations.Api]});
+  return get_index_result
+}
 function getMiddleArea() {
-  const instance = MiddleArea.findByPk(1);
+  const instance = MiddleArea.findByPk(1,{include:[MiddleArea.associations.Api]});
   console.log(typeof instance)
   return instance
 }
 
-export { getMiddleArea }
+export { MiddleArea, getIndex, getMiddleArea }

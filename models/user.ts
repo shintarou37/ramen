@@ -45,10 +45,12 @@ User.init(
     createdAt: {
       type: new DataTypes.DATE,
       allowNull: false,
+      defaultValue: new Date()
     },
     updatedAt: {
       type: new DataTypes.DATE,
       allowNull: false,
+      defaultValue: new Date()
     }
   },
   {
