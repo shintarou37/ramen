@@ -74,10 +74,9 @@ function getIndex() {
 }
 function getMiddleArea() {
   const instance = MiddleArea.findByPk(1,{include:[MiddleArea.associations.api]});
-  console.log(instance)
+  // console.log(instance)
   return instance
 }
-getMiddleArea()
-console.log(MiddleArea.associations.api)
+// getMiddleArea()
 
 export { MiddleArea, getIndex, getMiddleArea }

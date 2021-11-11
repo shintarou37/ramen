@@ -9,6 +9,7 @@ import {
   HasManyCountAssociationsMixin,
   HasManyCreateAssociationMixin,
 } from "sequelize";
+import { MiddleArea } from "./middle_area";
 
 const sequelize = new Sequelize("mysql://root@localhost:3306/ramen");
 
@@ -20,6 +21,11 @@ class Api extends Model
   public open!: string;
   public url!: number;
   public middle_area_id!: number;
+  // public static associate() {
+  //   this.belongsTo(MiddleArea, {
+  //     foreignKey: "middle_area_id"
+  //   });
+  // }
 }
 
 Api.init(
@@ -66,6 +72,7 @@ Api.init(
   }
 );
 new Api
+// Api.belongsTo(MiddleArea, { targetKey: "id" });
 function getApi() {
   const instance = Api.findByPk(1);
   console.log(typeof instance)

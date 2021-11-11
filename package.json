@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn ./bin/www",
     "tn": "ts-node ./sub/api.ts",
     "tm": "ts-node ./sub/mysql.ts",
-    "tmu": "ts-node ./models/user.ts"
+    "tmi": "ts-node ./models/middle_area.ts"
   },
   "dependencies": {
     "@types/validator": "^13.6.6",

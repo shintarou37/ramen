@@ -6,20 +6,6 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <div id="like_button_container">
-      <p>react</p>
-    </div>
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-  
-    <!-- Load our React component. -->
-    <script>
-      let dom = document.getElementById("like_button_container")
-      let el = React.createElement(
-        'p',{},'React動作'
-      )
-      ReactDOM.render(el,dom)
-    </script>
+    <p>Welcome to <%= title %> <%= name %>さん</p>
   </body>
 </html>
