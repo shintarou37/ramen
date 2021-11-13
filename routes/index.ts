@@ -1,11 +1,7 @@
 var express = require('express');
 var router = express.Router();
-// import { getUser } from "../models/user";
-// import { getApi } from "../models/api";
-// import { MiddleArea, getIndex, getMiddleArea } from "../models/middle_area";
-// var tes = require('../models');
-var tes = require('../models');
-console.log(tes)
+var models = require('../models');
+console.log(models)
 
 // router.get('/', (req:any, res:any, next:any) =>  {
 //   (async () => {
