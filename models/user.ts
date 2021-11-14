@@ -1,6 +1,5 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
 import { HasManyCreateAssociationMixin } from 'sequelize';
-import Api from './api';
 
 export default class User extends Model {
   public id!: number; // Note that the `null assertion` `!` is required in strict mode.
@@ -10,8 +9,7 @@ export default class User extends Model {
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
-  // (3) 作成したUserをUserIdをもつApiを作成するメソッド
-  public createApi!: HasManyCreateAssociationMixin<Api>;
+
 
   // (1)初期化
   public static initialize(sequelize: Sequelize) {
