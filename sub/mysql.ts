@@ -15,14 +15,18 @@ connection = mysql.createConnection({
 
 var sql : string = ""
 // ミッドエリアSQL
-for(let i : number = 0; i < result.length; i++){
-  if(! sql.includes(`${result[i].middle_area.name}`))
-    sql += `INSERT INTO ${constant.schema}.middle_area(name) values("${result[i].middle_area.name}");`;
-}
+// for(let i : number = 0; i < result.length; i++){
+//   if(! sql.includes(`${result[i].middle_area.name}`))
+//     sql += `INSERT INTO ${constant.schema}.middle_area(name) values("${result[i].middle_area.name}");`;
+// }
 // apiテーブルSQL
+// for(let i : number = 0; i < 1/*result.length*/; i++){
+//   sql += `INSERT INTO ${constant.schema}.api(id,name,address,open,url,middle_area_id,photo) values("${i + 1}","${result[i].name}","${result[i].address}","${result[i].open}","${result[i].coupon_urls.pc}","${result[i].middle_area.name}","${result[i].photo.pc.l}");`
+// }
 for(let i : number = 0; i < result.length; i++){
-  sql += `INSERT INTO ${constant.schema}.api(id,name,address,open,url,middle_area_id) values("${i + 1}","${result[i].name}","${result[i].address}","${result[i].open}","${result[i].coupon_urls.pc}","${result[i].middle_area.name}");`;
+  sql += `INSERT INTO ${constant.schema}.api(name,address,open,url,middle_area_id,photo) values("${result[i].name}","${result[i].address}","${result[i].open}","${result[i].coupon_urls.pc}","${result[i].middle_area.name}","${result[i].photo.pc.l}");`
 }
+
 console.log(sql)
 // connection.query(sql, function (error:any, results:any, fields:any) {
 //   console.log(error)
@@ -30,4 +34,4 @@ console.log(sql)
 //   console.log(fields)
 // });
 
-connection.end()
+// connection.end()
