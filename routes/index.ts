@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-console.log(models)
+console.log(models.default.MiddleArea.index())
 
-// router.get('/', (req:any, res:any, next:any) =>  {
-//   (async () => {
-//     res.render('test', { title: 'Express',name:"aa"});
-//   })();
-// });
+router.get('/', (req:any, res:any, next:any) =>  {
+  (async () => {
+    var result = await models.default.MiddleArea.index()
+    await res.render('index', { result: result});
+  })();
+});
 // router.get('/mi', (req:any, res:any, next:any) =>  {
 //   (async () => {
 //     var result = await getIndex()

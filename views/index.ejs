@@ -18,6 +18,9 @@
   <div class="top_container">
     <h1>一緒にラーメンを食べに行く仲間を探しましょう</h1>
   </div>
+  <% for(let i = 0; i < result.length; i++){ %>
+    <p><%= result[i].name %></p>
+  <% } %>
   <footer>
   </footer>
 </body>
