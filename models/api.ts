@@ -40,6 +40,10 @@ export default class Api extends Model {
           type: new DataTypes.INTEGER,
           allowNull: false,
         },
+        photo: {
+          type: new DataTypes.INTEGER,
+          allowNull: false,
+        },
         createdAt: {
           type: new DataTypes.DATE,
           allowNull: true,
