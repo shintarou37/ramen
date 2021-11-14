@@ -37,3 +37,11 @@ header{
   padding-right: 20px;
   font-size: 20px;
 }
+.top_container{
+  color: white;
+  height: 21vh;
+  background-color: #FFCC99	;
+  display: flex;
+  align-items: center;
+  justify-content:space-around
+}
