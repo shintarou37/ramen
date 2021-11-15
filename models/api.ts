@@ -63,7 +63,7 @@ export default class Api extends Model {
   public static associate() {
     this.belongsTo(MiddleArea, { foreignKey: 'middle_area_id', constraints: false });
   }
-  public static te1(){
+  public static te(){
     this.findAll().then((re:any)=>{
       console.log(re)
     })

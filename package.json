@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "ts-node-dev --respawn ./bin/www",
-    "tmi": "ts-node ./models/middle_area.ts"
+    "tmi": "ts-node ./models/middle_area.ts",
+    "tmy": "ts-node ./sub/mysql.ts"
   },
   "dependencies": {
     "@types/validator": "^13.6.6",

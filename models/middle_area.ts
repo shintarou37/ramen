@@ -47,12 +47,13 @@ export default class MiddleArea extends Model {
     });
   }
   public static index() {
-    return this.findAll().then((results:any)=>{
-      // console.log(results) 
+    return this.findAll({include:[Api]}).then((results:any)=>{
       return results
     })
   }
   public static te() {
-    this.findAll({include:[Api]})
+    this.findOne().then((results:any)=>{
+      console.log(results) 
+    })
   }
 }
