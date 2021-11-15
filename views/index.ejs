@@ -18,9 +18,23 @@
   <div class="top_container">
     <h1>一緒にラーメンを食べに行く仲間を探しましょう</h1>
   </div>
-  <% for(let i = 0; i < result.length; i++){ %>
-    <p><%= result[i].name %></p>
-  <% } %>
+  <div class="top_container">
+    <form action="/search" class="search_container" method="post">
+      <p>検索したいキーワードを入力してください。</p>
+      <input type="search" name="shop" placeholder="お店の名前を入力">
+      <select name="area">
+        <option hidden>エリアを選択してください</option>
+        <% for(let i = 0; i < result.length; i++){ %>
+          <option value="<%= result[i].id %>"><%= result[i].name %></option>
+        <% } %>
+        </select>
+      <input type="submit" name="submit" value="検索">
+    </form>
+  </div>
+  <!-- <% for(let i = 0; i < result.length; i++){ %>
+    <img src="<%= result[i].Apis[0].photo %>" alt="海の写真" title="空と海">
+  <% } %> -->
+  
   <footer>
   </footer>
 </body>
