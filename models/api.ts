@@ -1,4 +1,4 @@
-import { Sequelize, Model, DataTypes, Association } from 'sequelize';
+import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
 import MiddleArea from './middle_area';
 
 export default class Api extends Model {
@@ -63,8 +63,13 @@ export default class Api extends Model {
   public static associate() {
     this.belongsTo(MiddleArea, { foreignKey: 'middle_area_id', constraints: false });
   }
-  public static search(shop: string,area: number | string){
-    this.findAll({where:{name:shop,middle_area_id:area}}).then((results:any)=>{
+  public static search(shop: string,area: string){
+    this.findAll({
+      where: {
+        name: {[Op.like]: shop},
+        middle_area_id: {[Op.like]: area},
+      }
+    }).then((results:any)=>{
       // console.log(results)
     })
   }
