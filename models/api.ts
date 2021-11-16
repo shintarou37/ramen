@@ -63,9 +63,9 @@ export default class Api extends Model {
   public static associate() {
     this.belongsTo(MiddleArea, { foreignKey: 'middle_area_id', constraints: false });
   }
-  public static te(){
-    this.findAll().then((re:any)=>{
-      console.log(re)
+  public static search(shop: string,area: number | string){
+    this.findAll({where:{name:shop,middle_area_id:area}}).then((results:any)=>{
+      // console.log(results)
     })
   }
 }

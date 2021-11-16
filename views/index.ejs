@@ -23,7 +23,7 @@
       <p>検索したいキーワードを入力してください。</p>
       <input type="search" name="shop" placeholder="お店の名前を入力">
       <select name="area">
-        <option hidden>エリアを選択してください</option>
+        <option hidden value="%">エリアを選択してください</option>
         <% for(let i = 0; i < result.length; i++){ %>
           <option value="<%= result[i].id %>"><%= result[i].name %></option>
         <% } %>

@@ -4,9 +4,10 @@ var models = require('../models');
 
 router.post('/', (req:any, res:any, next:any) =>  {
   (async () => {
-    console.log(req.body.shop)
-    console.log(req.body.area)
-    // var result = await models.default.MiddleArea.index()
+    console.log("shop---------" + req.body.shop)
+    console.log("area---------" + req.body.area)
+    req.body.shop ? "": req.body.shop = "%"
+    var result = await models.default.Api.search(req.body.shop,req.body.area)
     // await res.render('index', { result: result});
   })();
 });
