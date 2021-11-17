@@ -2,15 +2,15 @@ import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
 import MiddleArea from './middle_area';
 
 export default class Api extends Model {
-  public id!: number; // Note that the `null assertion` `!` is required in strict mode.
-  public name!: string;
-  public address!: string;
-  public open!: string;
-  public url!: number;
-  public middle_area_id!: number;
+  // public id!: number; // Note that the `null assertion` `!` is required in strict mode.
+  // public name!: string;
+  // public address!: string;
+  // public open!: string;
+  // public url!: number;
+  // public middle_area_id!: number;
 
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
   public static initialize(sequelize: Sequelize) {
     this.init(
@@ -65,12 +65,13 @@ export default class Api extends Model {
   }
   public static search(shop: string,area: string){
     this.findAll({
+      attributes: { exclude: ['createdAt','updatedAt'] },
       where: {
         name: {[Op.like]: shop},
         middle_area_id: {[Op.like]: area},
       }
     }).then((results:any)=>{
-      // console.log(results)
+      console.log(results)
     })
   }
 }
