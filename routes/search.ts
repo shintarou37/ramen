@@ -7,7 +7,7 @@ router.post('/', (req:any, res:any, next:any) =>  {
     req.body.shop ? "": req.body.shop = "%"
     req.body.area ? "": req.body.area = "%"
     var result = await models.default.Api.search(req.body.shop,req.body.area)
-    // await res.render('index', { result: result});
+    await res.render('search', { result: result});
   })();
 });
 module.exports = router;
