@@ -64,14 +64,14 @@ export default class Api extends Model {
     this.belongsTo(MiddleArea, { foreignKey: 'middle_area_id', constraints: false });
   }
   public static search(shop: string,area: string){
-    this.findAll({
+    return this.findAll({
       attributes: { exclude: ['createdAt','updatedAt'] },
       where: {
         name: {[Op.like]: shop},
         middle_area_id: {[Op.like]: area},
       }
     }).then((results:any)=>{
-      console.log(results)
+      return results
     })
   }
 }
