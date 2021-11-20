@@ -15,5 +15,26 @@
       <a href="/" class="sign head">新規登録</a>
     </dev>
   </header>
+  <div class="top_container">
+    <form action="/search" class="search_container" method="get">
+      <p>検索したいキーワードを入力してください。</p>
+      <input type="search" name="name" value="<%= search_name %>">
+      <select name="area">
+        <option hidden value="%">エリアを選択してください</option>
+        <% for(let i = 0; i < drop.length; i++){ %>
+          <option value="<%= drop[i].id %>" <%= (drop[i].id == search_area) ? "selected" : ""; %>><%= drop[i].name %></option>
+        <% } %>
+        </select>
+      <input type="submit" name="submit" value="検索">
+    </form>
+  </div>
+  <dev>
+    <% for(let i = 0; i < results.length; i++){ %>
+      <div>
+        <img src="<%= results[i].photo %>">
+        <p><%= results[i].name %></p>
+      </div>
+    <% } %>
+  </dev>
 </body>
 </html>
