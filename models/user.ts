@@ -43,7 +43,7 @@ export default class User extends Model {
           defaultValue: new Date()
         }
       },
-      { sequelize, tableName: 'users' }
+      { sequelize, tableName: 'user' }
     );
     return this;
   }
