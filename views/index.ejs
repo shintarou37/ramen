@@ -21,11 +21,11 @@
   <div class="top_container">
     <form action="/search" class="search_container" method="get">
       <p>検索したいキーワードを入力してください。</p>
-      <input type="search" name="shop" placeholder="お店の名前を入力">
+      <input type="search" name="name" placeholder="お店の名前を入力">
       <select name="area">
         <option hidden value="%">エリアを選択してください</option>
-        <% for(let i = 0; i < result.length; i++){ %>
-          <option value="<%= result[i].id %>"><%= result[i].name %></option>
+        <% for(let i = 0; i < drop.length; i++){ %>
+          <option value="<%= drop[i].id %>"><%= drop[i].name %></option>
         <% } %>
         </select>
       <input type="submit" name="submit" value="検索">
