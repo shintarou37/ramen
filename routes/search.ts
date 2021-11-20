@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
-router.post('/', (req:any, res:any, next:any) =>  {
+router.get('/', (req:any, res:any, next:any) =>  {
   (async () => {
-    req.body.shop ? "": req.body.shop = "%"
-    var result = await models.default.Api.search(req.body.shop,req.body.area)
+    req.query.name ? "": req.query.name = "%"
+    var result = await models.default.Api.search(req.query.name,req.query.area)
+    // console.log(JSON.stringify(result))
     await res.render('search', { result: result});
   })();
 });
