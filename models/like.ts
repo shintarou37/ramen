@@ -39,7 +39,7 @@ export default class Like extends Model {
           defaultValue: new Date()
         }
       },
-      { sequelize, tableName: 'like' ,paranoid: true}
+      { sequelize, tableName: 'like', paranoid: true}
     );
     return this;
   }
