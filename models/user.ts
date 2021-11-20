@@ -2,13 +2,13 @@ import { Sequelize, Model, DataTypes } from 'sequelize';
 import { HasManyCreateAssociationMixin } from 'sequelize';
 
 export default class User extends Model {
-  public id!: number; // Note that the `null assertion` `!` is required in strict mode.
-  public name!: string;
-  public pass!: string;
-  public status!: number;
+  // public id!: number; // Note that the `null assertion` `!` is required in strict mode.
+  // public name!: string;
+  // public pass!: string;
+  // public status!: number;
 
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  // public readonly createdAt!: Date;
+  // public readonly updatedAt!: Date;
 
 
   // (1)初期化
@@ -28,9 +28,10 @@ export default class User extends Model {
           type: new DataTypes.STRING,
           allowNull: false,
         },
-        status: {
-          type: new DataTypes.INTEGER,
-          allowNull: false,
+        deletedAt: {
+          type: new DataTypes.DATE,
+          allowNull: true,
+          defaultValue: null
         },
         createdAt: {
           type: new DataTypes.DATE,
@@ -43,7 +44,7 @@ export default class User extends Model {
           defaultValue: new Date()
         }
       },
-      { sequelize, tableName: 'user' }
+      { sequelize, tableName: 'user', paranoid: true }
     );
     return this;
   }
