@@ -1,5 +1,7 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
 import { HasManyCreateAssociationMixin } from 'sequelize';
+import Like from './like';
+
 
 export default class User extends Model {
   // public id!: number; // Note that the `null assertion` `!` is required in strict mode.
@@ -47,5 +49,12 @@ export default class User extends Model {
       { sequelize, tableName: 'user', paranoid: true }
     );
     return this;
+  }
+
+  public static associate() {
+    this.hasMany(Like, {
+      sourceKey: 'id',
+      foreignKey: 'user_id',
+    });
   }
 }

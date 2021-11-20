@@ -1,4 +1,5 @@
 import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
+import Like from './like';
 import MiddleArea from './middle_area';
 
 export default class Api extends Model {
@@ -62,14 +63,19 @@ export default class Api extends Model {
 
   public static associate() {
     this.belongsTo(MiddleArea, { foreignKey: 'middle_area_id', constraints: false });
+    this.hasMany(Like, {
+      sourceKey: 'id',
+      foreignKey: 'api_id',
+    });
   }
-  public static search(shop: string,area: string){
+  public static search(name: string,area: string){
     return this.findAll({
       attributes: { exclude: ['createdAt','updatedAt'] },
       where: {
-        name: {[Op.like]: shop},
+        name: {[Op.like]: name},
         middle_area_id: {[Op.like]: area},
-      }
+      },
+      include:[Like]
     }).then((results:any)=>{
       return results
     })
