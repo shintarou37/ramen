@@ -45,3 +45,12 @@ header{
   align-items: center;
   justify-content:space-around
 }
+
+/* search.ejs */
+.ramen_container{
+  margin: 10px 0px 10px 30px;
+}
+.ramen{
+  display: flex;
+  margin: 10px 0px 10px 30px;
+}
