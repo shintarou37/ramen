@@ -1,6 +1,7 @@
 import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
 import Like from './like';
 import MiddleArea from './middle_area';
+import User from './user';
 
 export default class Api extends Model {
   // public id!: number; // Note that the `null assertion` `!` is required in strict mode.
@@ -74,8 +75,11 @@ export default class Api extends Model {
       where: {
         name: {[Op.like]: name},
         middle_area_id: {[Op.like]: area},
-      },
-      include:[Like]
+      }, 
+      include: [
+        {model:Like, required:false, attributes: ['id']}
+        // include: [User]}
+      ]
     }).then((results:any)=>{
       return results
     })
