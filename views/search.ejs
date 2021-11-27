@@ -1,48 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ラーメンGO</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
+<%- include('./partical/head') -%>
 <body>
-  <header>
-    <a href="/" class="title head">ラーメンGO</a>
-    <dev>
-      <a href="/" class="sign head">ログイン</a>
-      <a href="/" class="sign head">新規登録</a>
-    </dev>
-  </header>
-  <div class="top_container">
-    <form action="/search" class="search_container" method="get">
-      <p>検索したいキーワードを入力してください。</p>
-      <input type="search" name="name" value="<%= search_name %>">
-      <select name="area">
-        <option hidden value="%">エリアを選択してください</option>
-        <% for(let i = 0; i < drop.length; i++){ %>
-          <option value="<%= drop[i].id %>" <%= (drop[i].id == search_area) ? "selected" : ""; %>><%= drop[i].name %></option>
-        <% } %>
-        </select>
-      <input type="submit" name="submit" value="検索">
-    </form>
-  </div>
-  <dev class="ramen_container">
-    <% for(let i = 0; i < results.length; i++){ %>
-      <div class="ramen">
-        <img src="<%= results[i].photo %>">
-        <div>
-          <p><%= results[i].name %></p>
-          <p><%= results[i].address %></p>
-          <p><%= results[i].open %></p>
-          <% if (results[i].Likes[0]){ %>
-            <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a>
-            <a href="/like/<%= JSON.stringify(results[i].id) %>">一緒に行きたいと思っている人を確認する</a>
-          <% } %>
-          <button style="background-color: red;">予約する</button>
+  <%- include('./partical/header') -%>
+  <%- include('./partical/search_form') -%>
+  <dev class="search_result_container">
+    <% if (results[0]){
+      for(let i = 0; i < results.length; i++){ %>
+        <div class="ramen">
+          <img src="<%= results[i].photo %>">
+          <div>
+            <p><%= results[i].name %></p>
+            <p><%= results[i].address %></p>
+            <p><%= results[i].open %></p>
+            <% if (results[i].Likes[0]){ %>
+              <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a>
+              <a href="/like/<%= JSON.stringify(results[i].id) %>">一緒に行きたいと思っている人を確認する</a>
+            <% } %>
+            <button style="background-color: red;">予約する</button>
+          </div>
         </div>
-      </div>
+      <% } 
+    } else{ %>
+    <h1>検索結果がありません</h1>
     <% } %>
   </dev>
 </body>
