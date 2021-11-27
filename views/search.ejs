@@ -3,8 +3,18 @@
   <%- include('./partical/header') -%>
   <%- include('./partical/search_form') -%>
   <dev class="search_result_container">
-    <% if (results[0]){
-      for(let i = 0; i < results.length; i++){ %>
+    <% if (results[0]){ %>
+    <div class="pagenation">
+      <P>検索結果<%= count %>件</P>
+      <% if(current_page != 1){ %>
+        <a class="page_btn" href="/search?name=<%= search_name %>&area=<%= search_area %>&submit=検索&page=<%= current_page - 1 %>">前へ</a>
+      <% } %>
+      <p><%= current_page %>/<%= Math.floor((count / 20)) + 1 %>ページ</p>
+      <% if(current_page < Math.floor((count / 20)) + 1){ %>
+        <a class="page_btn" href="/search?name=<%= search_name %>&area=<%= search_area %>&submit=検索&page=<%= current_page + 1 %>">次へ</a>
+      <% } %>
+    </div>
+      <% for(let i = 0; i < results.length; i++){ %>
         <div class="ramen">
           <img src="<%= results[i].photo %>">
           <div>
