@@ -69,13 +69,15 @@ export default class Api extends Model {
       foreignKey: 'api_id',
     });
   }
-  public static search(name: string,area: string){
-    return this.findAll({
+  public static search(name: string, area: string, offset:number){
+    return this.findAndCountAll({
       attributes: { exclude: ['createdAt','updatedAt'] },
       where: {
         name: {[Op.like]: name},
-        middle_area_id: {[Op.like]: area},
+        middle_area_id: {[Op.like]: area}
       }, 
+      limit: 20,
+      offset: offset,
       include: [
         {model:Like, required:false, attributes: ['id']}
         // include: [User]}
