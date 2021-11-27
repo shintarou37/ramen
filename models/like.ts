@@ -45,7 +45,29 @@ export default class Like extends Model {
   }
 
   public static associate() {
-    this.belongsTo(Api, { foreignKey: 'api_id', constraints: false });
+    this.belongsTo(Api, { foreignKey: 'api_id'/*, constraints: false */});
     this.belongsTo(User, { foreignKey: 'user_id', constraints: false });
+  }
+  public static index( api_id : number ) {
+    return this.findAll({
+      // attributes: ['id'],
+      where: { 
+        api_id : api_id 
+      },
+      include: [
+        { model : User }
+      ]
+    }).then((results:any)=>{
+      // console.log(results)
+      return results
+    })
+  }
+  public static a(){
+    return this.findOne({
+    }).then((results:any)=>{
+      // console.log(results)
+      return results
+    })
+
   }
 }

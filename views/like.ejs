@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ラーメンGO 東京版</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <header>
+    <a href="/" class="title head">ラーメンGO 東京版</a>
+    <dev>
+      <a href="/" class="sign head">ログイン</a>
+      <a href="/" class="sign head">新規登録</a>
+    </dev>
+  </header>
+  <div>
+    <% for(let i = 0; i < results.length; i++){ %>
+      <p><%= results[i].User.dataValues.name %>さん</p>
+      <p><%= results[i].User.dataValues.createdAt %>さん</p>
+      <p><%= results[i].dataValues.level %>のレベル</p>
+      <p><%= results[i].dataValues.createdAt %>いいねした日</p>
+      <button style="background-color: red;">この人と一緒に行く</button>
+    <% } %>
+  </div>
+  <footer>
+  </footer>
+</body>
+</html>
