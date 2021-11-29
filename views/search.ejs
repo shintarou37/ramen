@@ -2,8 +2,7 @@
 <body>
   <%- include('./partical/header') -%>
   <%- include('./partical/search_form') -%>
-  <dev class="search_result_container">
-    <% if (results[0]){ %>
+  <% if (results[0]){ %>
     <div class="pagenation">
       <P>検索結果<%= count %>件</P>
       <% if(current_page != 1){ %>
@@ -14,24 +13,39 @@
         <a class="page_btn" href="/search?name=<%= search_name %>&area=<%= search_area %>&submit=検索&page=<%= current_page + 1 %>">次へ</a>
       <% } %>
     </div>
-      <% for(let i = 0; i < results.length; i++){ %>
-        <div class="ramen">
-          <img src="<%= results[i].photo %>">
-          <div>
-            <p><%= results[i].name %></p>
-            <p><%= results[i].address %></p>
-            <p><%= results[i].open %></p>
-            <% if (results[i].Likes[0]){ %>
-              <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a>
-              <a href="/like/<%= JSON.stringify(results[i].id) %>">一緒に行きたいと思っている人を確認する</a>
-            <% } %>
-            <button style="background-color: red;">予約する</button>
-          </div>
+    <% for(let i = 0; i < results.length; i++){ %>
+      <div class="ramen">
+        <img src="<%= results[i].photo %>">
+        <div class="ramen_info">
+          <a href="<%= results[i].url %>"><%= results[i].name %></a>
+          <p><%= results[i].address %></p>
+          <p><%= results[i].open %></p>
+          <% if (results[i].Likes[0]){ %>
+            <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a>
+            <a href="/like/<%= JSON.stringify(results[i].id) %>">一緒に行きたいと思っている人を確認する</a>
+          <% } %>
+          <button type="button" value="<%= results[i].id %>" id="like_btn">いいね</button>
+          <input type="button" onclick="window.history.back();" value="直前のページに戻る">
         </div>
-      <% } 
-    } else{ %>
+      </div>
+    <% } 
+  } else{ %>
     <h1>検索結果がありません</h1>
-    <% } %>
+  <% } %>
+  <script>
+    function butotnClick(event){
+        let check = confirm('このお店にいいねしますか？');
+        console.log(event.target.getAttribute("value"))
+        var id = event.target.getAttribute("value");
+        if( check == true ) {
+        // OKなら移動
+          location.href = `/like/${id}`;
+        }
+    }
+    
+    let button = document.getElementById('like_btn');
+    button.addEventListener('click', butotnClick);
+    </script>
   </dev>
 </body>
 </html>
