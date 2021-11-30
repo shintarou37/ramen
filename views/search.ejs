@@ -35,7 +35,7 @@
   <script>
     function butotnClick(event){
         let check = confirm('このお店にいいねしますか？');
-        console.log(event.target.getAttribute("value"))
+        // console.log(event.target.getAttribute("value"))
         var id = event.target.getAttribute("value");
         if( check == true ) {
         // OKなら移動
@@ -45,6 +45,12 @@
     
     let button = document.getElementById('like_btn');
     button.addEventListener('click', butotnClick);
+
+    window.onpageshow = function(event) {
+      if (event.persisted) {
+        window.location.reload();
+    }
+};
     </script>
   </dev>
 </body>
