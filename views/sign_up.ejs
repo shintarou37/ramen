@@ -1,0 +1,15 @@
+<%- include('./partical/head') -%>
+<body>
+  <%- include('./partical/header') -%>
+  <h1>新規登録画面</h1>
+  <form name="loginform" action="/user/sign_up" method="post">
+    <label class="check_lb">ユーザーネーム</label>
+    <input type="text" name="name" value="" size="20" placeholder="User name"/>
+    <label class="check_lb">パスワード</label>
+    <input type="password" name="pass"  value="" size="20" placeholder="Password"/>
+    <input type="submit" name="login-submit" id="login-submit" class="bt-long-login" value="サインアップ" />
+  </form>
+  <footer>
+  </footer>
+</body>
+</html>
