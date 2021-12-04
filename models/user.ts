@@ -1,17 +1,16 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import { Sequelize, Model, DataTypes, where } from 'sequelize';
 import { HasManyCreateAssociationMixin } from 'sequelize';
 import Like from './like';
-
+import bcrypt from 'bcrypt'
 
 export default class User extends Model {
-  // public id!: number; // Note that the `null assertion` `!` is required in strict mode.
-  // public name!: string;
-  // public pass!: string;
-  // public status!: number;
 
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
-
+  public id!: number; 
+  public name!: string;
+  public pass!: string;
+  public deletedAt!: Date;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 
   // (1)初期化
   public static initialize(sequelize: Sequelize) {
@@ -38,15 +37,15 @@ export default class User extends Model {
         createdAt: {
           type: new DataTypes.DATE,
           allowNull: false,
-          defaultValue: new Date()
+          defaultValue: DataTypes.NOW
         },
         updatedAt: {
           type: new DataTypes.DATE,
           allowNull: false,
-          defaultValue: new Date()
+          defaultValue: DataTypes.NOW
         }
       },
-      { sequelize, tableName: 'user', paranoid: true }
+      { sequelize, tableName: 'user' }
     );
     return this;
   }
@@ -56,5 +55,16 @@ export default class User extends Model {
       sourceKey: 'id',
       foreignKey: 'user_id',
     });
+  }
+  public static sign_up(body: any) {
+    let user = this.build()
+    user.name = body.name
+    let salt = bcrypt.genSaltSync(10);
+    let new_password = bcrypt.hashSync(body.pass, salt);
+    user.pass = new_password
+
+    return user.save().then((result:any)=>{
+      return result
+    })
   }
 }

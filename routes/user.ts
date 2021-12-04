@@ -4,7 +4,7 @@ var models = require('../models');
 
 router.get('/sign_in', (req:any, res:any, next:any) =>  {
   (async () => {
-
+    res.render('sign_in');
   })();
 });
 router.get('/sign_up', (req:any, res:any, next:any) =>  {
@@ -12,8 +12,7 @@ router.get('/sign_up', (req:any, res:any, next:any) =>  {
 });
 router.post('/sign_up', (req:any, res:any, next:any) =>  {
   (async () => {
-  console.log(JSON.stringify(req.body))
-    var results = await models.default.User.sign_up()
+    var result = await models.default.User.sign_up(req.body)
     await res.render('sign_up');
   })();
 });

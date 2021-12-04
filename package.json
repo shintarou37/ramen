@@ -5,12 +5,14 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "ts-node-dev --respawn ./bin/www",
-    "tmi": "ts-node ./models/middle_area.ts",
+    "us": "ts-node ./models/user.ts",
     "tmy": "ts-node ./sub/mysql.ts"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/validator": "^13.6.6",
     "async": "^3.2.2",
+    "bcrypt": "^5.0.1",
     "child_process": "^1.0.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
