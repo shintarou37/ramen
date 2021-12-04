@@ -67,4 +67,12 @@ export default class User extends Model {
       return result
     })
   }
+
+  public static sign_in(body: any) {
+    return this.findOne({
+      where: { name:body.name }
+    }).then((result:any) =>{
+      return result.dataValues
+    })
+  }
 }

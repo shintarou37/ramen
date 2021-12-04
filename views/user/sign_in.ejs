@@ -1,0 +1,16 @@
+<%- include('../partical/head') -%>
+<body>
+  <%- include('../partical/header') -%>
+  <h1>ログイン画面</h1>
+  <p><%= err %></p>
+  <form name="sign_in" action="/user/sign_in" method="post">
+    <label class="check_lb">ユーザーネーム※</label>
+    <input type="text" name="name" value="" minlength="1" maxlength="12" required placeholder="ユーザーネームを入力">
+    <label class="check_lb">パスワード※</label>
+    <input type="password" name="pass"  value="" minlength="4" maxlength="12" required placeholder="パスワードを入力"/>
+    <input type="submit" name="login-submit" id="login-submit" class="bt-long-login" value="サインイン">
+  </form>
+  <footer>
+  </footer>
+</body>
+</html>
