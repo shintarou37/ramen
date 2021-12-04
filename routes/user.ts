@@ -8,12 +8,12 @@ router.get('/sign_in', (req:any, res:any, next:any) =>  {
   })();
 });
 router.get('/sign_up', (req:any, res:any, next:any) =>  {
-  res.render('sign_up');
+  res.render('user/sign_up');
 });
 router.post('/sign_up', (req:any, res:any, next:any) =>  {
   (async () => {
     var result = await models.default.User.sign_up(req.body)
-    await res.render('sign_up');
+    await res.render('user/sign_in');
   })();
 });
 module.exports = router;
