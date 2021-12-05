@@ -13,7 +13,13 @@ var userRouter = require('./routes/user');
 var app = express();
 
 app.use(express.static('images'));
-
+var session_opt = {
+  secret: 'typescript_ramen',
+  resave: false,
+  saveUninitialized: false, 
+  cookie: { maxAge: 60 * 60 * 1000 }
+};
+app.use(session(session_opt));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -33,6 +39,8 @@ app.use('/user', userRouter);
 app.use(function(req:any, res:any, next:any) {
   next(createError(404));
 });
+
+
 
 // error handler
 app.use(function(err:any, req:any, res:any, next:any) {
