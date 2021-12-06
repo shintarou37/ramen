@@ -2,10 +2,10 @@
   <a href="/" class="title head">ラーメンGO 東京版</a>
   <dev>
     <% if(req.session.user){ %>
+      <a href="/user/my_page" class="sign head">マイページ</a>
+    <% }else{ %>
       <a href="/user/sign_in" class="sign head">ログイン</a>
       <a href="/user/sign_up" class="sign head">新規登録</a>
-    <% }else{ %>
-      <a href="/user/my_page" class="sign head">マイページ</a>
     <% } %>
   </dev>
 </header>
