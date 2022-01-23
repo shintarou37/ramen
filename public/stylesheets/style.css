@@ -11,6 +11,9 @@ ul,li {
   padding: 0;
   margin: 0;
 }
+a{
+  text-decoration: none;
+}
 
 /* index */
 .index_head{
@@ -26,37 +29,43 @@ ul,li {
   text-align: center;
 }
 .head_child{
-    height: 100px;
-    position: absolute;
-    top: 0;
-    bottom :0;
-    margin:  auto;
-    color: black;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  bottom :0;
+  margin:  auto;
+  color: black;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* search */
-.search_result_container{
-  margin: 10px 0px 10px 30px;
-}
 .ramen{
   display: flex;
   margin: 10px 0px 10px 30px;
+  padding-bottom: 10px;
+  border-bottom: #fa0 solid;
+  width: 90vw;
+}
+.ramen_info{
+  margin-left: 30px;
 }
 .pagenation{
   display: flex;
+  margin-left: 30px;
+  justify-content: space-between;
 }
 .page_btn{
   display       : inline-block;
   border-radius : 20%;          /* 角丸       */
-  font-size     : 18pt;        /* 文字サイズ */
+  font-size     : 16pt;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 12px 12px;   /* 余白       */
   background    : #ffa64d;     /* 背景色     */
   color         : #ffffff;     /* 文字色     */
-  line-height   : 1em;         /* 1行の高さ  */
+  line-height   : 10px;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
+  text-decoration: none;
 }
 
 /* partical/header */
@@ -79,6 +88,11 @@ header{
 .sign{
   padding-right: 20px;
   font-size: 20px;
+}
+
+/* sign_in */
+.check_lb {
+  display:block;
 }
 
 /* partical/search_form */
