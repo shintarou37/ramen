@@ -62,11 +62,15 @@ export default class Like extends Model {
       return results
     })
   }
-  public static a(){
-    return this.findOne({
-    }).then((results:any)=>{
-      // console.log(results)
-      return results
+  public static register( api_id : number ){
+    var like = this.build();
+    like.name = body.name
+    let salt = bcrypt.genSaltSync(10);
+    let new_password = bcrypt.hashSync(body.pass, salt);
+    user.pass = new_password
+
+    return like.save().then((result:any)=>{
+      return result
     })
 
   }
