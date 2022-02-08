@@ -3,6 +3,14 @@ import Api from './api';
 import User from './user';
 
 export default class Like extends Model {
+  public id!: number; 
+  public api_id!: number; 
+  public user_id!: number; 
+  public level!: number; 
+  public deletedAt!: Date;
+  public createdAt!: Date;
+  public updatedAt!: Date;
+
   public static initialize(sequelize: Sequelize) {
     this.init(
       {
@@ -55,20 +63,18 @@ export default class Like extends Model {
         api_id : api_id 
       },
       include: [
-        { model : User }
+        {model : User}
       ]
     }).then((results:any)=>{
       // console.log(results)
       return results
     })
   }
-  public static register( api_id : number ){
+  public static register(req : any){
     var like = this.build();
-    like.name = body.name
-    let salt = bcrypt.genSaltSync(10);
-    let new_password = bcrypt.hashSync(body.pass, salt);
-    user.pass = new_password
-
+    like.api_id = req.params.id;
+    like.user_id = req.session.user.id;
+    like.level = 1;
     return like.save().then((result:any)=>{
       return result
     })
