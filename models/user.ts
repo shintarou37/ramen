@@ -70,8 +70,11 @@ export default class User extends Model {
 
   public static sign_in(body: any) {
     return this.findOne({
-      where: { name:body.name }
-    }).then((result:any) =>{
+      where: {name: body.name},
+      include: [
+        {model:Like, required: false}
+      ]
+    }).then((result: any) =>{
       return result.dataValues
     })
   }
