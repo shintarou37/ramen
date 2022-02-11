@@ -28,13 +28,13 @@ router.post('/sign_in', (req:any, res:any, next:any) =>  {
     }
     
     req.session.regenerate((err:any) =>{
-      let likes = result.Likes.length
-      console.log("dd" + likes)
+      let like_arr = []
       for(let i = 0; i < result.Likes.length; i++){
-        console.log(i)
+        like_arr.push(result.Likes[i].api_id)
       }
 
       req.session.user = result;
+      req.session.like_arr.like_arr = like_arr;
       req.session.save();
       res.redirect('/');
     });
