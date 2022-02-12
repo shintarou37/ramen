@@ -23,12 +23,13 @@
           <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a>
           <% if (results[i].Likes[0]){ %>
             <a href="/like/<%= JSON.stringify(results[i].id) %>">一緒に行きたいと思っている人を確認する</a>
-            <button type="button" value="<%= results[i].id %>" id="like_btn">行きたい</button>
-          <% } 
-          else { %>
-          <button type="button" style="background-color: aqua;">行きたい済</button>
           <% } %>
-          <input type="button" onclick="window.history.back();" value="直前のページに戻る">
+          <% if(like_arr.includes(results[i].id)){ %>
+            <button type="button" style="background-color: aqua;">行きたい済</button>
+          <% }
+          else { %>
+            <button type="button" value="<%= results[i].id %>" id="like_btn">行きたい</button>
+          <% } %>
         </div>
       </div>
     <% } 

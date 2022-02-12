@@ -33,8 +33,9 @@ router.post('/sign_in', (req:any, res:any, next:any) =>  {
         like_arr.push(result.Likes[i].api_id)
       }
 
+      console.log(like_arr)
       req.session.user = result;
-      req.session.like_arr.like_arr = like_arr;
+      req.session.like_arr = like_arr;
       req.session.save();
       res.redirect('/');
     });

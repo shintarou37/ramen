@@ -17,7 +17,7 @@ var session_opt = {
   secret: 'typescript_ramen',
   resave: false,
   saveUninitialized: false, 
-  cookie: {maxAge: 600 * 60 * 1000}
+  cookie: {maxAge: 600 * 600 * 1000}
 };
 app.use(session(session_opt));
 // view engine setup

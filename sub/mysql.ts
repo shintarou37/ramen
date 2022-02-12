@@ -27,7 +27,7 @@ for(let i : number = 0; i < result.length; i++){
   sql += `INSERT INTO ${constant.schema}.api(name,address,open,url,middle_area_id,photo) values("${result[i].name}","${result[i].address}","${result[i].open}","${result[i].coupon_urls.pc}","${result[i].middle_area.name}","${result[i].photo.pc.l}");`
 }
 
-console.log(sql)
+// console.log(sql)
 // connection.query(sql, function (error:any, results:any, fields:any) {
 //   console.log(error)
 //   console.log(results)
