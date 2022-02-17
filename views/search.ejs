@@ -20,14 +20,18 @@
           <a href="/<%= results[i].id %>" target="_blank"><%= results[i].name %></a>
           <p><%= results[i].address %></p>
           <p><%= results[i].open %></p>
-          <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a>
+          <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a><br>
           <% if (results[i].Likes[0]){ %>
-            <a href="/like/<%= JSON.stringify(results[i].id) %>">一緒に行きたいと思っている人を確認する</a>
+            <a class="page_btn" href="/like/<%= JSON.stringify(results[i].id) %>">行きたいを押した人</a>
           <% } %>
-          <% if(like_arr.includes(results[i].id)){ %>
-            <button type="button" style="background-color: aqua;">行きたい済</button>
-          <% }
-          else { %>
+          <% if(typeof like_arr === undefined){
+            if(like_arr.includes(results[i].id)){ %>
+              <button type="button" style="background-color: aqua;">行きたい済</button>
+            <% }
+            else{ %>
+              <button type="button" value="<%= results[i].id %>" id="like_btn">行きたい</button>
+            <% }
+          } else{ %>
             <button type="button" value="<%= results[i].id %>" id="like_btn">行きたい</button>
           <% } %>
         </div>
