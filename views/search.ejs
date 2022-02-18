@@ -32,7 +32,7 @@
               <button type="button" value="<%= results[i].id %>" id="like_btn">行きたい</button>
             <% }
           } else{ %>
-            <button type="button" value="<%= results[i].id %>" id="like_btn">行きたい</button>
+            <button type="button" value="<%= results[i].id %>" id="like_btn">行きたdい</button>
           <% } %>
         </div>
       </div>
@@ -40,24 +40,21 @@
   } else{ %>
     <h1>検索結果がありません</h1>
   <% } %>
+  <input type="hidden" value="<%= search_name %>" id="search_name">
+  <input type="hidden" value="<%= search_area %>" id="search_area">
   <script>
     function like_click(event){
         let check = confirm('このお店にいいねしますか？');
-        // console.log(event.target.getAttribute("value"))
+        let re_name = document.getElementById("search_name");
+        let re_area = document.getElementById("search_area");
         var id = event.target.getAttribute("value");
-        if( check == true ) {
+        if(check == true) {
         // OKなら移動
-          location.href = `/like/${id}`;
+          location.href = `/like/${id}?re_name=${re_name.value}&re_area=${re_area.value}`;
         }
     }
     let button = document.getElementById('like_btn');
     button.addEventListener('click', like_click);
-
-    // window.onpageshow = (event)=> {
-    //   if (event.persisted) {
-    //     window.location.reload();
-    //   }
-    // };
     </script>
   </dev>
 </body>
