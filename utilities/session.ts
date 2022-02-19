@@ -1,9 +1,7 @@
-function ext_session(req: any){
+function login_confirmation(req:any, res:any, next:any){
   if(req.session.user){
-    return true
+    next();
   }else{
-    return false
+    res.redirect('/user/sign_in');
   }
 }
-
-export { ext_session }

@@ -15,7 +15,7 @@ router.get('/', (req:any, res:any, next:any) =>  {
     let drop = await models.default.MiddleArea.index()
     let results = await models.default.Api.search(name, req.query.area, offset)
     // console.log("eq.session.user.like_arr" + req.session.user.like_arr)
-    console.log("------ereq.session.user  " + JSON.stringify(req.session.user))
+    // console.log("------ereq.session.user  " + JSON.stringify(req.session.user))
     await res.render('search', { 
       results: results.rows, count:results.count, drop: drop, search_name: req.query.name, search_area: req.query.area, 
       current_page: current_page, req: req, like_arr: req.session.like_arr
