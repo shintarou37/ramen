@@ -11,7 +11,7 @@ router.get('/sign_up', (req:any, res:any, next:any) =>  {
 router.post('/sign_up', (req:any, res:any, next:any) =>  {
   (async () => {
     var result = await models.default.User.sign_up(req.body)
-    res.render('user/sign_in');
+    res.render('user/sign_in', {err: null, req: req});
   })();
 });
 

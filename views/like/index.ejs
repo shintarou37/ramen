@@ -17,10 +17,8 @@
   </header>
   <div>
     <% for(let i = 0; i < results.length; i++){ %>
-      <p><%= results[i].User.dataValues.name %>さん</p>
-      <p><%= results[i].User.dataValues.createdAt %>さん</p>
-      <p><%= results[i].dataValues.level %>のレベル</p>
-      <p><%= results[i].dataValues.createdAt %>いいねした日</p>
+      <p><%= results[i].User.name %>さん</p>
+      <p><%= results[i].User.createdAt %>さん</p>
       <button style="background-color: red;">この人と一緒に行く</button>
     <% } %>
   </div>

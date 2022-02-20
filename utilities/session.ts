@@ -1,4 +1,4 @@
-function login_confirmation(req:any, res:any, next:any){
+exports.login_confirmation = (req:any, res:any, next:any) =>{
   if(req.session.user){
     next();
   }else{

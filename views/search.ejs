@@ -22,7 +22,7 @@
           <p><%= results[i].open %></p>
           <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a><br>
           <% if (results[i].Likes[0]){ %>
-            <a class="page_btn" href="/like/<%= JSON.stringify(results[i].id) %>">行きたいを押した人</a>
+            <a class="page_btn" href="/like/index/<%= JSON.stringify(results[i].id) %>">行きたいを押した人</a>
           <% } %>
           <% if(typeof like_arr === undefined){
             if(like_arr.includes(results[i].id)){ %>

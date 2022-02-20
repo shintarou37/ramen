@@ -53,10 +53,10 @@ export default class Like extends Model {
   }
 
   public static associate() {
-    this.belongsTo(Api, { foreignKey: 'api_id'/*, constraints: false */});
+    this.belongsTo(Api, { foreignKey: 'api_id'});
     this.belongsTo(User, { foreignKey: 'user_id', constraints: false });
   }
-  public static index( api_id : number ) {
+  public static index(api_id: any) {
     return this.findAll({
       // attributes: ['id'],
       where: { 
@@ -65,7 +65,7 @@ export default class Like extends Model {
       include: [
         {model : User}
       ]
-    }).then((results:any)=>{
+    }).then((results: any)=>{
       // console.log(results)
       return results
     })
