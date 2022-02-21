@@ -8,6 +8,7 @@ router.get('/:id', session.login_confirmation,(req:any, res:any, next:any) =>  {
   (async () => {
     console.log("-----------likeに入りました")
     await models.default.Like.register(req);
+    req.session.like_arr.push(req.params.id)
     res.redirect(`/search/?name=${req.query.re_name}&area=${req.query.re_area}`);
   })();
 });
