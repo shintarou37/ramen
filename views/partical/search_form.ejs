@@ -3,7 +3,7 @@
     <p>検索したいキーワードを入力してください。</p>
     <input class="search_item" type="search" name="name" value="<%= search_name %>" placeholder="お店の名前を入力">
     <select name="area"  class="search_item">
-      <option hidden value="%">エリアを選択してください</option>
+      <option  value="%">未選択</option>
       <% for(let i = 0; i < drop.length; i++){ %>
         <option value="<%= drop[i].id %>" <%= (drop[i].id == search_area) ? "selected" : ""; %>><%= drop[i].name %></option>
       <% } %>
