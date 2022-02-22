@@ -58,15 +58,13 @@ export default class Like extends Model {
   }
   public static index(api_id: any) {
     return this.findAll({
-      // attributes: ['id'],
       where: { 
         api_id : api_id 
       },
       include: [
-        {model : User}
+        {model: User, required: true}
       ]
     }).then((results: any)=>{
-      // console.log(results)
       return results
     })
   }

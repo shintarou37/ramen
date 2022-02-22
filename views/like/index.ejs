@@ -17,10 +17,22 @@
   </header>
   <div>
     <% for(let i = 0; i < results.length; i++){ %>
-      <p><%= results[i].User.name %>さん</p>
-      <p><%= results[i].User.createdAt %>さん</p>
-      <button style="background-color: red;">この人と一緒に行く</button>
+      <div style="border: solid;">
+        <p><%= results[i].User.name %>さん</p>
+        <p><%= results[i].User.createdAt %>さん</p>
+        <button style="background-color: red;" onclick="like_click('<%= results[i].User.id %>','<%= results[i].User.name %>')">この人と一緒に行く</button>
+      </div >
     <% } %>
+    <script>
+      function like_click(id, name){
+        console.log(id)
+        let check = confirm(`${name}さんにいいねしますか？`);
+        if(check == true) {
+        // OKなら移動
+          location.href = `/match`;
+        }
+      }
+      </script>
   </div>
   <footer>
   </footer>
