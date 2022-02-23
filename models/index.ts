@@ -3,7 +3,7 @@ import Api from './api';
 import MiddleArea from './middle_area';
 import User from './user';
 import Like from './like';
-import Match from './matchi';
+import Match from './match';
 
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
