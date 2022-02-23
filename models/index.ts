@@ -3,6 +3,7 @@ import Api from './api';
 import MiddleArea from './middle_area';
 import User from './user';
 import Like from './like';
+import Match from './matchi';
 
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
@@ -15,7 +16,8 @@ const db :any = {
   Api: Api.initialize(sequelize),
   MiddleArea: MiddleArea.initialize(sequelize),
   User: User.initialize(sequelize),
-  Like: Like.initialize(sequelize)
+  Like: Like.initialize(sequelize),
+  Match: Match.initialize(sequelize)
 };
 
 // (2)テーブル同士の関係を作成する
