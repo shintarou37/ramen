@@ -62,7 +62,8 @@ export default class Like extends Model {
         api_id : api_id 
       },
       include: [
-        {model: User, required: true}
+        {model: User, required: true},
+        {model: Api, required: true}
       ]
     }).then((results: any)=>{
       return results

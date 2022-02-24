@@ -4,7 +4,7 @@ var models = require('../models');
 
 var session = require("../utilities/session");
 
-router.get('/:id', session.login_confirmation,(req:any, res:any, next:any) =>  {
+router.get('/:id', session.login_confirmation, (req:any, res:any, next:any) =>  {
   (async () => {
     console.log("-----------likeに入りました")
     await models.default.Like.register(req);
@@ -19,7 +19,7 @@ router.get('/index/:id', (req:any, res:any, next:any) => {
     // console.log("-----------req.params.id" + req.params.id)
     let results = await models.default.Like.index(req.params.id);
     // console.log("-----------req.params.id" + JSON.stringify(results))
-    res.render(`like/index`, {results: results});
+    res.render(`like/index`, {req: req, results: results});
   })();
 });
 module.exports = router;
