@@ -24,7 +24,7 @@
       </div >
     <% } %>
     <script>
-      function like_click(id, name){
+      let like_click = (id, name) => {
         console.log(id)
         let check = confirm(`${name}さんにいいねしますか？`);
         if(check == true) {
@@ -32,7 +32,7 @@
           location.href = `/match`;
         }
       }
-      </script>
+    </script>
   </div>
   <footer>
   </footer>
