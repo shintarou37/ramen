@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-router.get('/', async (req:any, res:any, next:any) => {
 
-    // console.log(req.session.user)
-    var drop = await models.default.MiddleArea.index()
-    await res.render('index', {drop: drop, search_name: "", search_area: "", req: req});
+var session = require("../utilities/session");
+
+router.get('/', session.login_confirmation, async (req:any, res:any, next:any) => {
+
+    var result = await models.default.Match.register(req);
+    await res.render('like/success', {search_name: "", search_area: "", req: req});
 });
 
 

@@ -56,4 +56,13 @@ export default class Match extends Model {
     this.belongsTo(User, { foreignKey: 'giver_id'});
     this.belongsTo(User, { foreignKey: 'receiver_id'});
   }
+  public static register(req: any){
+    var match = this.build();
+    match.giver_id = req.session.user.id;
+    match.receiver_id = req.query.user_id;
+    match.api_id = req.query.id;
+    return match.save().then((result: any)=>{
+      return result
+    })
+  }
 }
