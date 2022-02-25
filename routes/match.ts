@@ -4,10 +4,13 @@ var models = require('../models');
 
 var session = require("../utilities/session");
 
-router.get('/', session.login_confirmation, async (req:any, res:any, next:any) => {
-
-    var result = await models.default.Match.register(req);
-    await res.render('like/success', {search_name: "", search_area: "", req: req});
+router.get('/', session.login_confirmation, (req:any, res:any, next:any) => {
+    (async () => {
+        console.log("--------------matchに入りました")
+        await models.default.Match.register(req);
+        await models.default.Like.delete(req);
+        await res.render('match/success', {req: req});
+    })();
 });
 
 

@@ -56,19 +56,20 @@ export default class Like extends Model {
     this.belongsTo(Api, { foreignKey: 'api_id'});
     this.belongsTo(User, { foreignKey: 'user_id', constraints: false });
   }
-  public static index(api_id: any) {
+  public static index(req: any) {
     return this.findAll({
       where: { 
-        api_id : api_id 
+        api_id : req.params.id
       },
       include: [
         {model: User, required: true},
         {model: Api, required: true}
       ]
     }).then((results: any)=>{
-      return results
+      return results;
     })
   }
+
   public static register(req : any){
     var like = this.build();
     like.api_id = req.params.id;
@@ -76,7 +77,16 @@ export default class Like extends Model {
     like.level = 1;
     return like.save().then((result:any)=>{
       return result
-    })
+    });
+  };
 
-  }
-}
+  public static delete(req : any){
+    return this.destroy({
+      where: {
+        id: req.query.like_id
+      }
+    }).then((result:any)=>{
+      return result
+    });
+  };
+};
