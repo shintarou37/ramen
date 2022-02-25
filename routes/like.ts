@@ -13,11 +13,11 @@ router.get('/:id', session.login_confirmation, (req:any, res:any, next:any) =>  
   })();
 });
 
-router.get('/index/:id', (req:any, res:any, next:any) => {
+router.get('/index/:id', session.login_confirmation, (req: any, res: any, next: any) => {
   (async () => {
     console.log("-----------likeに入りました")
     // console.log("-----------req.params.id" + req.params.id)
-    let results = await models.default.Like.index(req.params.id);
+    let results = await models.default.Like.index(req);
     // console.log("-----------req.params.id" + JSON.stringify(results))
     res.render(`like/index`, {req: req, results: results});
   })();
