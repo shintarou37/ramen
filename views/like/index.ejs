@@ -7,7 +7,7 @@
         <p>店名：<%= results[i].Api.name %></p>
         <p><%= results[i].User.name %>さん</p>
         <p><%= results[i].User.createdAt %>さん</p>
-        <% if(req.session.user.id == results[i].User.id){ %>
+        <% if(req.session.user.id !== results[i].User.id){ %>
           <button style="background-color: red;" onclick="like_click('<%= results[i].Api.id %>','<%= results[i].User.id %>','<%= results[i].User.name %>','<%= results[i].id %>')">この人と一緒に行く</button>
         <% } %>
       </div >
