@@ -3,6 +3,7 @@
   <dev>
     <% if(req.session.user){ %>
       <a href="/match/index/<%= req.session.user.id %>" class="sign head">マイページ</a>
+      <%= req.session.user.name %>さん
     <% }else{ %>
       <a href="/user/sign_in" class="sign head">ログイン</a>
       <a href="/user/sign_up" class="sign head">新規登録</a>
