@@ -47,7 +47,7 @@ export default class Match extends Model {
           defaultValue: new Date()
         }
       },
-      { sequelize, tableName: 'matchis'}
+      { sequelize, tableName: 'matchis', paranoid: true}
     );
     return this;
   }
@@ -55,6 +55,22 @@ export default class Match extends Model {
     this.belongsTo(Api, { foreignKey: 'api_id'});
     this.belongsTo(User, { foreignKey: 'giver_id'});
     this.belongsTo(User, { foreignKey: 'receiver_id'});
+  }
+  public static index(user_id: number) {
+    return this.findAll({
+      where: { 
+        [Op.or]: [
+          {giver_id: user_id},
+          {receiver_id: user_id}
+        ]
+      },
+      include: [
+        {model: User, required: false},
+        {model: Api, required: false}
+      ]
+    }).then((results: any)=>{
+      return results;
+    })
   }
   public static register(req: any){
     let match = this.build();

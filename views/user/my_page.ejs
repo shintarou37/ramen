@@ -1,0 +1,13 @@
+<%- include('../partical/head') -%>
+<body>
+  <%- include('../partical/header') -%>
+  <div>
+    <% for(let i = 0; i < results.length; i++){ %> %>
+      <p><%= results[i].User.name %>さんと<%= results[i].Api.name %>というお店でマッチしました。</p>
+      <a>トークルームへ遷移する</a>
+    <% } %>
+  </div>
+  <footer>
+  </footer>
+</body>
+</html>
