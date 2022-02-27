@@ -45,7 +45,7 @@ app.use('/match', matchRouter);
 app.use('/message', messageRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req:any, res:any, next:any) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
