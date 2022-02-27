@@ -71,7 +71,7 @@ export default class Like extends Model {
   }
 
   public static register(req : any){
-    var like = this.build();
+    let like = this.build();
     like.api_id = req.params.id;
     like.user_id = req.session.user.id;
     like.level = 1;

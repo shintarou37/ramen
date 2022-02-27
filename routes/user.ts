@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-var models = require('../models');
+const models = require('../models');
 import bcrypt from 'bcrypt'
 
 // 新規登録
@@ -10,7 +10,7 @@ router.get('/sign_up', (req: express.Request, res: express.Response, next: expre
 
 router.post('/sign_up', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   (async () => {
-    var result = await models.default.User.sign_up(req.body)
+    await models.default.User.sign_up(req.body)
     res.render('user/sign_in', {err: null, req: req});
   })();
 });
@@ -22,7 +22,7 @@ router.get('/sign_in', (req: express.Request, res: express.Response, next: expre
 
 router.post('/sign_in', (req: express.Request , res: express.Response, next: express.NextFunction) => {
   (async () => {
-    var result = await models.default.User.sign_in(req.body)
+    const result = await models.default.User.sign_in(req.body)
     if (!bcrypt.compareSync(req.body.pass, result.pass)) {
       return res.render('user/sign_in', {err: "パスワードが異なります。", req: req});
     }

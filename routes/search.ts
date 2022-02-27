@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-var models = require('../models');
+const models = require('../models');
 
 router.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   (async () => {
