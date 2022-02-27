@@ -4,6 +4,7 @@ var models = require('../models');
 
 var session = require("../utilities/session");
 
+// マッチする
 router.get('/', session.login_confirmation, (req:any, res:any, next:any) => {
     (async () => {
         console.log("--------------matchに入りました")
