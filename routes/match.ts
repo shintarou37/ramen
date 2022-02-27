@@ -8,9 +8,9 @@ const session = require("../utilities/session");
 router.get('/', session.login_confirmation, (req: express.Request, res: express.Response, next: express.NextFunction) => {
     (async () => {
         console.log("--------------matchに入りました")
-        await models.default.Match.register(req);
+        const result = await models.default.Match.register(req);
         await models.default.Like.delete(req);
-        res.render('match/success', {req: req});
+        res.redirect(`/message/${result.id}`);
     })();
 });
 

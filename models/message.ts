@@ -56,5 +56,16 @@ export default class Message extends Model {
     this.belongsTo(Match, {foreignKey: 'match_id'});
     this.belongsTo(User, {foreignKey: 'sender_id'});
   }
+
+  public static getAll(id: number) {
+    return this.findAll({
+      where: {match_id: id},
+      include: [
+        {model:User, required: true}
+      ]
+    }).then((results: any) =>{
+      return results
+    })
+  }
 };
 
