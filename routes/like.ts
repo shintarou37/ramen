@@ -1,19 +1,20 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 var models = require('../models');
 
 var session = require("../utilities/session");
 
-router.get('/:id', session.login_confirmation, (req:any, res:any, next:any) =>  {
+router.get('/:id', session.login_confirmation, (req: express.Request, res: express.Response, next: express.NextFunction) => {
   (async () => {
     console.log("-----------likeに入りました")
     await models.default.Like.register(req);
-    req.session.like_arr.push(req.params.id)
+    const like_api_id: number = Number(req.params.id);
+    req.session.like_arr.push(like_api_id);
     res.redirect(`/search/?name=${req.query.re_name}&area=${req.query.re_area}`);
   })();
 });
 
-router.get('/index/:id', session.login_confirmation, (req: any, res: any, next: any) => {
+router.get('/index/:id', session.login_confirmation, (req: express.Request, res: express.Response, next: express.NextFunction) => {
   (async () => {
     console.log("-----------likeに入りました")
     // console.log("-----------req.params.id" + req.params.id)

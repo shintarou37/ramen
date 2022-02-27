@@ -1,14 +1,14 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 var models = require('../models');
 import bcrypt from 'bcrypt'
 
 // 新規登録
-router.get('/sign_up', (req:any, res:any, next:any) =>  {
+router.get('/sign_up', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   res.render('user/sign_up', {req: req});
 });
 
-router.post('/sign_up', (req:any, res:any, next:any) =>  {
+router.post('/sign_up', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   (async () => {
     var result = await models.default.User.sign_up(req.body)
     res.render('user/sign_in', {err: null, req: req});
@@ -16,11 +16,11 @@ router.post('/sign_up', (req:any, res:any, next:any) =>  {
 });
 
 // ログイン
-router.get('/sign_in', (req:any, res:any, next:any) =>  {
+router.get('/sign_in', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   res.render('user/sign_in', {err: null, req: req});
 });
 
-router.post('/sign_in', (req:any, res:any, next:any) =>  {
+router.post('/sign_in', (req: express.Request , res: express.Response, next: express.NextFunction) => {
   (async () => {
     var result = await models.default.User.sign_in(req.body)
     if (!bcrypt.compareSync(req.body.pass, result.pass)) {

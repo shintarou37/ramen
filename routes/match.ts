@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 var models = require('../models');
 
 var session = require("../utilities/session");
 
 // マッチする
-router.get('/', session.login_confirmation, (req:any, res:any, next:any) => {
+router.get('/', session.login_confirmation, (req: express.Request, res: express.Response, next: express.NextFunction) => {
     (async () => {
         console.log("--------------matchに入りました")
         await models.default.Match.register(req);
@@ -15,7 +15,7 @@ router.get('/', session.login_confirmation, (req:any, res:any, next:any) => {
 });
 
 // マイページ
-router.get('/index/:id', session.login_confirmation, (req:any, res:any, next:any) => {
+router.get('/index/:id', session.login_confirmation, (req: express.Request, res: express.Response, next: express.NextFunction) => {
     (async () => {
         console.log("----------------------マイページに入りました")
         let user_id: number = Number(req.params.id);

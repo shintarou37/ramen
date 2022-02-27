@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 var models = require('../models');
 
-router.get('/', (req:any, res:any, next:any) =>  {
+router.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   (async () => {
     console.log("----------------searchに入りました")
-    let current_page = 1;
-    if (typeof req.query.page !== 'undefined' && req.query.page && isFinite(req.query.page) && Number(req.query.page) > 0) {
+    let current_page: number = 1;
+    if (typeof req.query.page !== 'undefined' && req.query.page && Number(req.query.page) > 0) {
         current_page =+ req.query.page;
     }
     let offset = (current_page - 1) * 20;
@@ -15,9 +15,17 @@ router.get('/', (req:any, res:any, next:any) =>  {
     let drop = await models.default.MiddleArea.index()
     let results = await models.default.Api.search(name, req.query.area, offset)
     console.log("------session.like_arr  " + req.session.like_arr)
-    console.log("------session.user  " + JSON.stringify(req.session.user))
+    // console.log("------session.user  " + JSON.stringify(req.session.user))
     req.session.save();
-    await res.render('search', { 
+    console.log("------session.typeof  " + typeof req.session.like_arr)
+
+    if(req.session.like_arr){
+      let a = req.session.like_arr
+      console.log(a)
+      console.log("------session.like_arr  " + a.includes(686))
+
+    }
+    res.render('search', { 
       results: results.rows, count:results.count, drop: drop, search_name: req.query.name, search_area: req.query.area, 
       current_page: current_page, req: req, like_arr: req.session.like_arr
     });
