@@ -3,7 +3,7 @@ import User from './user';
 import Match from './match';
 
 
-export default class Like extends Model {
+export default class Message extends Model {
   public id!: number; 
   public match_id!: number; 
   public sender_id!: number; 
