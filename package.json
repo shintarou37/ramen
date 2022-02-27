@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/express-session": "^1.17.4",
     "@types/validator": "^13.6.6",
     "async": "^3.2.2",
     "bcrypt": "^5.0.1",

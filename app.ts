@@ -1,9 +1,16 @@
 var createError = require('http-errors');
-var express = require('express');
+import express from 'express';
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+
+declare module 'express-session' {
+  interface SessionData {
+      user: any,
+      like_arr: any
+  }
+}
 
 var indexRouter = require('./routes/index');
 var searchRouter = require('./routes/search');
