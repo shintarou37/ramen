@@ -1,3 +1,12 @@
-<% for(let i = 0; i < results.length; i++){ %>
-  <%= results[i].id %>
-<% } %>
+<%- include('../partical/head') -%>
+<body>
+  <%- include('../partical/header') -%>
+  <div>
+    <% for(let i = 0; i < results.length; i++){ %>
+      <%= results[i].id %>
+    <% } %>
+  </div>
+  <footer>
+  </footer>
+</body>
+</html>
