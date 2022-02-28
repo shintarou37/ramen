@@ -2,10 +2,20 @@
 <body>
   <%- include('../partical/header') -%>
   <div>
-    <% for(let i = 0; i < results.length; i++){ %>
-      <%= results[i].id %>
+    <p><%= result.Api.name %></p>
+    <% if(result.Giver){ %> 
+      <p><%= result.Giver.name %>さん</p>
+      <%} else if(result.Receiver){ %>
+      <p><%= result.Receiver.name %>さん</p>
+    <% } %>
+    <% for(let i = 0; i < result.Messages.length; i++){ %>
+      <%= result[i].id %>
     <% } %>
   </div>
+  <form name="sign_in" action="/message/<%= result.id %>" method="post">
+    <input type="text" name="name" value="" minlength="1" maxlength="12" required placeholder="メッセージを入力">
+    <input type="submit" name="login-submit" id="login-submit" class="bt-long-login" value="送信">
+  </form>
   <footer>
   </footer>
 </body>

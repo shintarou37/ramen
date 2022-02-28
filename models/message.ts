@@ -1,6 +1,7 @@
 import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
 import User from './user';
 import Match from './match';
+import Api from './api';
 
 
 export default class Message extends Model {
@@ -57,15 +58,5 @@ export default class Message extends Model {
     this.belongsTo(User, {foreignKey: 'sender_id'});
   }
 
-  public static getAll(id: number) {
-    return this.findAll({
-      where: {match_id: id},
-      include: [
-        {model:User, required: true}
-      ]
-    }).then((results: any) =>{
-      return results
-    })
-  }
 };
 

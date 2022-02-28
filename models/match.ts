@@ -1,5 +1,6 @@
 import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
 import Api from './api';
+import Message from './message';
 import User from './user';
 
 export default class Match extends Model {
@@ -53,8 +54,9 @@ export default class Match extends Model {
   }
   public static associate() {
     this.belongsTo(Api, { foreignKey: 'api_id'});
-    this.belongsTo(User, { foreignKey: 'giver_id'});
-    this.belongsTo(User, { foreignKey: 'receiver_id'});
+    this.belongsTo(User, { foreignKey: 'giver_id', as: 'Giver'});
+    this.belongsTo(User, { foreignKey: 'receiver_id', as: 'Receiver'});
+    this.hasMany(Message, { foreignKey: 'match_id'});
   }
   public static index(user_id: number) {
     return this.findAll({
@@ -65,8 +67,13 @@ export default class Match extends Model {
         ]
       },
       include: [
-        {model: User, required: false},
-        {model: Api, required: false}
+        {model: User, required: false, as: 'Giver',
+          where: {id: {[Op.ne]: user_id}}
+        },
+        {model: User, required: false, as: 'Receiver',
+          where: {id: {[Op.ne]: user_id}}
+        },
+        {model: Api, required: true}
       ]
     }).then((results: any)=>{
       return results;
@@ -78,6 +85,28 @@ export default class Match extends Model {
     match.receiver_id = req.query.user_id;
     match.api_id = req.query.id;
     return match.save().then((result: any)=>{
+      return result
+    })
+  }
+
+  public static getTalk(match_id: number, user_id: number) {
+    return this.findOne({
+      where: {id: match_id},
+      include: [
+        {model: Message, required: false,
+          include: [
+            {model: User, required: true}
+          ] 
+        },
+        {model: Api, required: true},
+        {model: User, required: false, as: 'Giver',
+          where: {id: {[Op.ne]: user_id}}
+        },
+        {model: User, required: false, as: 'Receiver',
+          where: {id: {[Op.ne]: user_id}}
+        },
+      ]
+    }).then((result: any) =>{
       return result
     })
   }
