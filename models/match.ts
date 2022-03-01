@@ -2,6 +2,7 @@ import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
 import Api from './api';
 import Message from './message';
 import User from './user';
+const moment = require('moment');
 
 export default class Match extends Model {
   public id!: number; 
@@ -94,6 +95,11 @@ export default class Match extends Model {
       where: {id: match_id},
       include: [
         {model: Message, required: false,
+          attributes: [
+            'id',
+            'content',
+            [Sequelize.fn('date_format', Sequelize.col('Messages.createdAt'), '%m-%d-%Y %H:%i:%s'), 'createdAt'],
+          ],
           include: [
             {model: User, required: true}
           ] 
