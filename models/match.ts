@@ -2,7 +2,6 @@ import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
 import Api from './api';
 import Message from './message';
 import User from './user';
-const moment = require('moment');
 
 export default class Match extends Model {
   public id!: number; 
@@ -41,12 +40,10 @@ export default class Match extends Model {
         createdAt: {
           type: new DataTypes.DATE,
           allowNull: true,
-          defaultValue: new Date()
         },
         updatedAt: {
           type: new DataTypes.DATE,
           allowNull: true,
-          defaultValue: new Date()
         }
       },
       { sequelize, tableName: 'matchis', paranoid: true}

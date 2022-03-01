@@ -49,12 +49,10 @@ export default class Api extends Model {
         createdAt: {
           type: new DataTypes.DATE,
           allowNull: true,
-          defaultValue: new Date()
         },
         updatedAt: {
           type: new DataTypes.DATE,
           allowNull: true,
-          defaultValue: new Date()
         }
       },
       { sequelize, tableName: 'api' }

@@ -25,12 +25,10 @@ export default class MiddleArea extends Model {
         createdAt: {
           type: new DataTypes.DATE,
           allowNull: true,
-          defaultValue: new Date()
         },
         updatedAt: {
           type: new DataTypes.DATE,
           allowNull: true,
-          defaultValue: new Date()
         }
       },
       { sequelize, tableName: 'middle_area' }

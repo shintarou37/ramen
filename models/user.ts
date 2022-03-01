@@ -37,12 +37,10 @@ export default class User extends Model {
         createdAt: {
           type: new DataTypes.DATE,
           allowNull: false,
-          defaultValue: DataTypes.NOW
         },
         updatedAt: {
           type: new DataTypes.DATE,
           allowNull: false,
-          defaultValue: DataTypes.NOW
         }
       },
       { sequelize, tableName: 'user' }
