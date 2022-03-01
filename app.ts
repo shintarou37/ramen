@@ -24,7 +24,9 @@ var app = express();
 app.use(express.static('images'));
 var session_opt = {
   secret: 'typescript_ramen',
-  cookie: {maxAge: 60 * 60 * 1000}
+  cookie: {maxAge: 60 * 60 * 1000},
+  resave: false,
+  saveUninitialized: false
 };
 app.use(session(session_opt));
 // view engine setup
