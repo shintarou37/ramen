@@ -41,12 +41,10 @@ export default class Message extends Model {
         createdAt: {
           type: new DataTypes.DATE,
           allowNull: true,
-          defaultValue: new Date()
         },
         updatedAt: {
           type: new DataTypes.DATE,
           allowNull: true,
-          defaultValue: new Date()
         }
       },
       { sequelize, tableName: 'messages', paranoid: true}
@@ -57,6 +55,14 @@ export default class Message extends Model {
     this.belongsTo(Match, {foreignKey: 'match_id'});
     this.belongsTo(User, {foreignKey: 'sender_id'});
   }
-
+  public static register(match_id: number, user_id: number, content: string){
+    let message = this.build();
+    message.match_id = match_id;
+    message.sender_id = user_id;
+    message.content = content;
+    return message.save().then((result: any)=>{
+      return result
+    })
+  }
 };
 
