@@ -20,11 +20,14 @@ router.get('/sign_in', (req: express.Request, res: express.Response, next: expre
   res.render('user/sign_in', {err: null, req: req});
 });
 
-router.post('/sign_in', (req: express.Request , res: express.Response, next: express.NextFunction) => {
+router.post('/sign_in', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   (async () => {
-    const result = await models.default.User.sign_in(req.body)
+    const result = await models.default.User.sign_in(req.body);
+    if(!result){
+      return res.render('user/sign_in', {err: "ユーザーネームが異なります", req: req});
+    }
     if (!bcrypt.compareSync(req.body.pass, result.pass)) {
-      return res.render('user/sign_in', {err: "パスワードが異なります。", req: req});
+      return res.render('user/sign_in', {err: "パスワードが異なります", req: req});
     }
     
     req.session.regenerate((err:any) =>{

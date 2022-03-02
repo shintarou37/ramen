@@ -73,7 +73,12 @@ export default class User extends Model {
         {model:Like, required: false}
       ]
     }).then((result: any) =>{
-      return result.dataValues
+      if(result){
+        return result.dataValues;
+      }
+      throw new Error();
+    }).catch((err: any)=>{
+      return false
     })
   }
 }
