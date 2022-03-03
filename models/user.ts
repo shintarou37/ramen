@@ -68,16 +68,17 @@ export default class User extends Model {
 
   public static sign_in(body: any) {
     return this.findOne({
+      attributes: ['id','name','pass'],
       where: {name: body.name},
       include: [
-        {model:Like, required: false}
+        {model:Like, required: false, attributes: ['api_id']}
       ]
-    }).then((result: any) =>{
+    }).then((result: any)=>{
       if(result){
         return result.dataValues;
       }
       throw new Error();
-    }).catch((err: any)=>{
+    }).catch(()=>{
       return false
     })
   }
