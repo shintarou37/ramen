@@ -1,5 +1,4 @@
-import { Sequelize, Model, DataTypes, where } from 'sequelize';
-import { HasManyCreateAssociationMixin } from 'sequelize';
+import { Sequelize, Model, DataTypes } from 'sequelize';
 import Like from './like';
 import bcrypt from 'bcrypt'
 
@@ -8,7 +7,7 @@ export default class User extends Model {
   public id!: number; 
   public name!: string;
   public pass!: string;
-  public deletedAt!: Date;
+  public deletedAt?: Date;
   public createdAt!: Date;
   public updatedAt!: Date;
 
@@ -66,10 +65,10 @@ export default class User extends Model {
     })
   }
 
-  public static sign_in(body: any) {
+  public static sign_in(name: string) {
     return this.findOne({
       attributes: ['id','name','pass'],
-      where: {name: body.name},
+      where: {name: name},
       include: [
         {model:Like, required: false, attributes: ['api_id']}
       ]

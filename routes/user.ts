@@ -22,7 +22,8 @@ router.get('/sign_in', (req: express.Request, res: express.Response, next: expre
 
 router.post('/sign_in', (req: express.Request, res: express.Response, next: express.NextFunction) => {
   (async () => {
-    const result = await models.default.User.sign_in(req.body);
+    const name: string = req.body.name
+    const result = await models.default.User.sign_in(name);
     if(!result){
       return res.render('user/sign_in', {err: "ユーザーネームが異なります", req: req});
     }
@@ -30,13 +31,12 @@ router.post('/sign_in', (req: express.Request, res: express.Response, next: expr
       return res.render('user/sign_in', {err: "パスワードが異なります", req: req});
     }
     
-    req.session.regenerate((err:any) =>{
+    req.session.regenerate(()=> {
       let like_arr = []
       for(let i = 0; i < result.Likes.length; i++){
         like_arr.push(result.Likes[i].api_id)
       }
 
-      console.log(like_arr)
       req.session.user = result;
       req.session.like_arr = like_arr;
       req.session.save();
