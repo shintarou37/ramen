@@ -79,6 +79,10 @@ a{
   transition    : .3s;         /* なめらか変化 */
   text-decoration: none;
 }
+.not_find{
+  text-align: center;
+  margin-top: 150px;
+}
 
 /* partical/header */
 header{
