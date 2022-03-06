@@ -5,6 +5,9 @@
     <div class="user_child">
       <h1>ログイン画面</h1>
       <p class="error"><%= err %></p>
+      <% if(sign_up){ %>
+        <p class="error">新規登録に成功しました。<br>ログインしてアプリをお楽しみください。</p>
+      <% } %>
         <form name="sign_in" action="/user/sign_in" method="post">
           <label class="block">ユーザーネーム※</label>
           <input class="user_inp" type="text" name="name" value="" minlength="1" maxlength="12" required placeholder="ユーザーネームを入力">

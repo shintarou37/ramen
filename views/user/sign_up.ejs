@@ -1,14 +1,19 @@
 <%- include('../partical/head') -%>
 <body>
   <%- include('../partical/header') -%>
-  <h1>新規登録画面</h1>
-  <form name="sign_up" action="/user/sign_up" method="post">
-    <label class="check_lb">ユーザーネーム※</label>
-    <input type="text" name="name" value="" minlength="1" maxlength="12" required placeholder="ユーザーネームを入力">
-    <label class="check_lb">パスワード※</label>
-    <input type="password" name="pass"  value="" minlength="4" maxlength="12" required placeholder="パスワードを入力"/>
-    <input type="submit" name="login-submit" id="login-submit" class="bt-long-login" value="サインアップ">
-  </form>
+  <div class="user_parent">
+    <div class="user_child">
+      <h1>新規登録画面</h1>
+      <p class="error"><%= err %></p>
+      <form name="sign_up" action="/user/sign_up" method="post">
+        <label class="block">ユーザーネーム※</label>
+        <input class="user_inp" type="text" name="name" value="" minlength="1" maxlength="12" required placeholder="ユーザーネームを入力">
+        <label class="block mt2">パスワード※</label>
+        <input class="user_inp" type="password" name="pass"  value="" minlength="4" maxlength="12" required placeholder="パスワードを入力"/>
+        <input class="block user_btn" type="submit" name="login-submit" value="新規登録">
+      </form>
+    </div>
+  </div>
   <footer>
   </footer>
 </body>
