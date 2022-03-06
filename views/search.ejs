@@ -3,43 +3,47 @@
   <%- include('./partical/header') -%>
   <%- include('./partical/search_form') -%>
   <% if (results[0]){ %>
-    <div class="pagenation">
-      <P>検索結果<%= count %>件</P>
-      <% if(current_page != 1){ %>
-        <a class="page_btn" href="/search?name=<%= search_name %>&area=<%= search_area %>&submit=検索&page=<%= current_page - 1 %>">前へ</a>
-      <% } %>
-      <p><%= current_page %>/<%= Math.floor((count / 20)) + 1 %>ページ</p>
-      <% if(current_page < Math.floor((count / 20)) + 1){ %>
-        <a class="page_btn" href="/search?name=<%= search_name %>&area=<%= search_area %>&submit=検索&page=<%= current_page + 1 %>">次へ</a>
-      <% } %>
-    </div>
-    <% for(let i = 0; i < results.length; i++){ %>
-      <div class="ramen">
-        <img src="<%= results[i].photo %>">
-        <div class="ramen_info">
-          <a href="/<%= results[i].id %>" target="_blank"><%= results[i].name %></a>
-          <p><%= results[i].address %></p>
-          <p><%= results[i].open %></p>
-          <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a><br>
-          <% if (results[i].Likes[0]){ %>
-            <a class="page_btn" href="/like/index/<%= JSON.stringify(results[i].id) %>">行きたいを押した人</a>
+    <div class="search_parent">
+      <div class="pagenation">
+        <P>検索結果&nbsp;<span class="orange"><%= count %></span>&nbsp;件</P>
+        <div class="pagenation_child">
+          <p class="result_count"><%= current_page %>/<%= Math.floor((count / 20)) + 1 %>ページ</p>
+          <% if(current_page != 1){ %>
+            <a class="page_btn" href="/search?name=<%= search_name %>&area=<%= search_area %>&submit=検索&page=<%= current_page - 1 %>">前へ</a>
           <% } %>
-          <% if(like_arr){
-            if(like_arr.includes(results[i].id)){ %>
-              <button type="button" style="background-color: aqua;">行きたい済</button>
-            <% }
-            else{ %>
-              <button type="button" value="<%= results[i].id %>" onclick="go_click('<%= results[i].id %>')"class="like_btn">行きたい</button>
-            <% }
-          }else{ %>
-            <button type="button" value="<%= results[i].id %>" onclick="go_click('<%= results[i].id %>')" class="like_btn">ログインして行きたいを押す</button>
+          <% if(current_page < Math.floor((count / 20)) + 1){ %>
+            <a class="page_btn" href="/search?name=<%= search_name %>&area=<%= search_area %>&submit=検索&page=<%= current_page + 1 %>">次へ</a>
           <% } %>
         </div>
       </div>
-    <% } 
-  } else{ %>
-    <h1 class="not_find">検索結果がありません</h1>
-  <% } %>
+      <% for(let i = 0; i < results.length; i++){ %>
+        <div class="ramen">
+          <img src="<%= results[i].photo %>">
+          <div class="ramen_info">
+            <a href="/<%= results[i].id %>" target="_blank"><%= results[i].name %></a>
+            <p><%= results[i].address %></p>
+            <p><%= results[i].open %></p>
+            <a><%= results[i].Likes.length %>人がこのお店に行きたいと思っています</a><br>
+            <% if (results[i].Likes[0]){ %>
+              <a class="page_btn" href="/like/index/<%= JSON.stringify(results[i].id) %>">行きたいを押した人</a>
+            <% } %>
+            <% if(like_arr){
+              if(like_arr.includes(results[i].id)){ %>
+                <button type="button" style="background-color: aqua;">行きたい済</button>
+              <% }
+              else{ %>
+                <button type="button" value="<%= results[i].id %>" onclick="go_click('<%= results[i].id %>')"class="like_btn">行きたい</button>
+              <% }
+            }else{ %>
+              <button type="button" value="<%= results[i].id %>" onclick="go_click('<%= results[i].id %>')" class="like_btn">ログインして行きたいを押す</button>
+            <% } %>
+          </div>
+        </div>
+      <% } 
+    } else{ %>
+      <h1 class="not_find">検索結果がありません</h1>
+    <% } %>
+    </div>
   <input type="hidden" value="<%= search_name %>" id="search_name">
   <input type="hidden" value="<%= search_area %>" id="search_area">
   <script>

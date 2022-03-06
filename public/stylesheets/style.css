@@ -19,6 +19,10 @@ a{
   color: red;
   font-size: large;
 }
+.orange{
+  color: #ffa64d;
+  font-size: large;
+}
 .block {
   display: block;
 }
@@ -51,37 +55,45 @@ a{
 }
 
 /* search */
+.search_parent{
+  margin: 10px 0px 10px 30px;
+}
+.pagenation{
+  display: flex;
+  justify-content: space-between;
+}
+.pagenation_child{
+  margin-right: 100px;
+}
+.result_count{
+  display: inline-block;
+}
+.page_btn{
+  display       : inline-block;
+  border-radius : 20%;
+  font-size     : 16pt;
+  text-align    : center;
+  cursor        : pointer;
+  padding       : 12px 12px;
+  background    : #ffa64d;
+  color         : #ffffff;
+  line-height   : 12px;
+  transition    : .3s;
+  text-decoration: none;
+  margin-left: 20px;
+}
+.not_find{
+  text-align: center;
+  margin-top: 150px;
+}
 .ramen{
   display: flex;
-  margin: 10px 0px 10px 30px;
   padding-bottom: 10px;
   border-bottom: #fa0 solid;
   width: 90vw;
 }
 .ramen_info{
   margin-left: 30px;
-}
-.pagenation{
-  display: flex;
-  margin-left: 30px;
-  justify-content: space-between;
-}
-.page_btn{
-  display       : inline-block;
-  border-radius : 20%;          /* 角丸       */
-  font-size     : 16pt;        /* 文字サイズ */
-  text-align    : center;      /* 文字位置   */
-  cursor        : pointer;     /* カーソル   */
-  padding       : 12px 12px;   /* 余白       */
-  background    : #ffa64d;     /* 背景色     */
-  color         : #ffffff;     /* 文字色     */
-  line-height   : 10px;         /* 1行の高さ  */
-  transition    : .3s;         /* なめらか変化 */
-  text-decoration: none;
-}
-.not_find{
-  text-align: center;
-  margin-top: 150px;
 }
 
 /* partical/header */
