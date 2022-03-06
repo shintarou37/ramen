@@ -17,8 +17,10 @@
         </div>
       </div>
       <% for(let i = 0; i < results.length; i++){ %>
-        <div class="ramen">
-          <img src="<%= results[i].photo %>">
+        <div class="ramen_container">
+          <div class="img_area">
+            <img src="<%= results[i].photo %>">
+          </div>
           <div class="ramen_info">
             <a href="/<%= results[i].id %>" target="_blank"><%= results[i].name %></a>
             <p><%= results[i].address %></p>

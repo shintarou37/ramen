@@ -86,16 +86,23 @@ a{
   text-align: center;
   margin-top: 150px;
 }
-.ramen{
+.ramen_container{
   display: flex;
-  padding-bottom: 10px;
   border-bottom: #fa0 solid;
+  height: 260px;
   width: 90vw;
 }
 .ramen_info{
-  margin-left: 30px;
+  margin: 20px 0 0 30px;
 }
-
+.img_area{
+  width: 240px;
+  display: flex;
+}
+.img_area img{
+  display: block; 
+  margin: auto;
+}
 /* partical/header */
 header{
   height: 9vh;
