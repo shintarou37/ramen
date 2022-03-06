@@ -26,6 +26,9 @@ a{
 .block {
   display: block;
 }
+.fwb{
+  font-weight: bold;
+}
 /* detail_common */
 .mt2{
   margin-top: 20px;
@@ -94,6 +97,9 @@ a{
 }
 .ramen_info{
   margin: 20px 0 0 30px;
+}
+.shop_name{
+  font-size: large;
 }
 .img_area{
   width: 240px;
