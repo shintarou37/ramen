@@ -53,15 +53,17 @@ export default class User extends Model {
       foreignKey: 'user_id',
     });
   }
-  public static sign_up(body: any) {
-    let user = this.build()
-    user.name = body.name
+  public static sign_up(name: string, pass: string) {
+    let user = this.build();
+    user.name = name;
     let salt = bcrypt.genSaltSync(10);
-    let new_password = bcrypt.hashSync(body.pass, salt);
-    user.pass = new_password
+    let new_password = bcrypt.hashSync(pass, salt);
+    user.pass = new_password;
 
-    return user.save().then((result:any)=>{
-      return result
+    return user.save().then((result:any)=> {
+      return result;
+    }).catch(()=>{
+      return false;
     })
   }
 
