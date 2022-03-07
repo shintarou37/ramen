@@ -54,17 +54,19 @@ export default class Like extends Model {
     this.belongsTo(Api, { foreignKey: 'api_id'});
     this.belongsTo(User, { foreignKey: 'user_id', constraints: false });
   }
-  public static index(req: any) {
+  public static get(id: string) {
     return this.findAll({
       where: { 
-        api_id : req.params.id
+        api_id : id
       },
       include: [
         {model: User, required: true},
         {model: Api, required: true}
       ]
-    }).then((results: any)=>{
+    }).then((results: any)=> {
       return results;
+    }).catch(()=> {
+      return false;
     })
   }
 
