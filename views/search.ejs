@@ -25,19 +25,17 @@
             <a class="shop_name" href="<%= results[i].url %>" target="_blank"><%= results[i].name %></a>
             <p><span class="fwb">住所</span>：<%= results[i].address %></p>
             <p><span class="fwb">営業時間</span>：<%= results[i].open %></p>
-            <a>行きたいの数&nbsp;<span class="orange"><%= results[i].Likes.length %></span>&nbsp;件</a><br>
-            <% if (results[i].Likes[0]){ %>
-              <a class="page_btn" href="/like/index/<%= JSON.stringify(results[i].id) %>">行きたいを押した人</a>
-            <% } %>
+            <a>行きたいの数&nbsp;<a href="/like/index/<%= JSON.stringify(results[i].id) %>"><span class="orange"><%= results[i].Likes.length %></span></a>&nbsp;件</a><br>
             <% if(like_arr){
               if(like_arr.includes(results[i].id)){ %>
-                <button type="button" style="background-color: aqua;">行きたい済</button>
+                <button class="completed_btn">行きたい済</button>
               <% }
               else{ %>
                 <button type="button" value="<%= results[i].id %>" onclick="go_click('<%= results[i].id %>')"class="like_btn">行きたい</button>
               <% }
             }else{ %>
-              <button type="button" value="<%= results[i].id %>" onclick="go_click('<%= results[i].id %>')" class="like_btn">ログインして行きたいを押す</button>
+              <button type="button" class="like_btn">行きたい</button>
+              <p>※ログインすることで行きたいを押すことができます。</p>
             <% } %>
           </div>
         </div>
