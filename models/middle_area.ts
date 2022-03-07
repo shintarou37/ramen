@@ -3,13 +3,8 @@ import { HasManyCreateAssociationMixin } from 'sequelize';
 import Api from './api';
 
 export default class MiddleArea extends Model {
-  public id!: number; // Note that the `null assertion` `!` is required in strict mode.
-  public name!: string;
-
-  // (3) 作成したMiddleAreaをMiddleAreaIdをもつApiを作成するメソッド
   public createApi!: HasManyCreateAssociationMixin<Api>;
 
-  // (1)初期化
   public static initialize(sequelize: Sequelize) {
     this.init(
       {
@@ -36,7 +31,6 @@ export default class MiddleArea extends Model {
     return this;
   }
 
-  // (2)テーブル関係を記述
   public static associate() {
     this.hasMany(Api, {
       sourceKey: 'id',
@@ -44,19 +38,14 @@ export default class MiddleArea extends Model {
       constraints: false
     });
   }
+  
   public static index() {
     return this.findAll({
       attributes: { exclude: ['createdAt','updatedAt'] }
-    }).then((results:any)=>{
-      return results
+    }).then((results:any)=> {
+      return results;
+    }).catch(()=> {
+      return false;
     })
   }
-    // public static index() {
-  //   return this.findAll({
-  //     attributes: { exclude: ['createdAt','updatedAt'] },
-  //     include:[Api]
-  //   }).then((results:any)=>{
-  //     return results
-  //   })
-  // }
 }

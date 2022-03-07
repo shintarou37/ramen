@@ -4,15 +4,6 @@ import MiddleArea from './middle_area';
 import User from './user';
 
 export default class Api extends Model {
-  // public id!: number; // Note that the `null assertion` `!` is required in strict mode.
-  // public name!: string;
-  // public address!: string;
-  // public open!: string;
-  // public url!: number;
-  // public middle_area_id!: number;
-
-  // public readonly createdAt!: Date;
-  // public readonly updatedAt!: Date;
 
   public static initialize(sequelize: Sequelize) {
     this.init(
@@ -67,7 +58,7 @@ export default class Api extends Model {
       foreignKey: 'api_id',
     });
   }
-  public static search(name: string, area: string, offset:number){
+  public static search(name: string, area: string, offset: number){
     return this.findAndCountAll({
       attributes: { exclude: ['createdAt','updatedAt'] },
       where: {
@@ -77,11 +68,12 @@ export default class Api extends Model {
       limit: 20,
       offset: offset,
       include: [
-        {model:Like, required:false, attributes: ['id']}
-        // include: [User]}
+        {model: Like, required: false, attributes: ['id']}
       ]
     }).then((results:any)=>{
       return results
+    }).catch(()=>{
+      return false
     })
   }
 }

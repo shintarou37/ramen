@@ -2,29 +2,21 @@ import express from 'express';
 const router = express.Router();
 const models = require('../models');
 
-router.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  (async () => {
-    console.log("----------------searchに入りました")
+router.get('/', (req: express.Request, res: express.Response, next: express.NextFunction)=> {
+  (async ()=> {
     let current_page: number = 1;
     if (typeof req.query.page !== 'undefined' && req.query.page && Number(req.query.page) > 0) {
         current_page =+ req.query.page;
     }
-    let offset = (current_page - 1) * 20;
-    let name : string
-    req.query.name ? name = `%${req.query.name}%`: name = "%"
-    let drop = await models.default.MiddleArea.index()
-    let results = await models.default.Api.search(name, req.query.area, offset)
-    console.log("------session.like_arr  " + req.session.like_arr)
-    // console.log("------session.user  " + JSON.stringify(req.session.user))
-    req.session.save();
-    console.log("------session.typeof  " + typeof req.session.like_arr)
-
-    if(req.session.like_arr){
-      let a = req.session.like_arr
-      console.log(a)
-      console.log("------session.like_arr  " + a.includes(686))
-
+    const offset = (current_page - 1) * 20;
+    let name: string;
+    req.query.name ? name = `%${req.query.name}%`: name = "%";
+    const drop = await models.default.MiddleArea.index();
+    const results = await models.default.Api.search(name, req.query.area, offset);
+    if(!drop || !results){
+      return next();
     }
+    req.session.save();
     res.render('search', { 
       results: results.rows, count:results.count, drop: drop, search_name: req.query.name, search_area: req.query.area, 
       current_page: current_page, req: req, like_arr: req.session.like_arr
