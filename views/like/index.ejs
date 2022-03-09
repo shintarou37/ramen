@@ -1,20 +1,20 @@
 <%- include('../partical/head') -%>
 <body>
   <%- include('../partical/header') -%>
-  <div>
+  <div class="like_parent">
     <% for(let i = 0; i < results.length; i++){ %>
-      <div style="border: solid;">
-        <p>店名：<%= results[i].Api.name %></p>
-        <p><%= results[i].User.name %>さん</p>
-        <p><%= results[i].User.createdAt %>さん</p>
+      <div class="like_info">
+        <p><span class="fwb"><%= results[i].User.name %></span>&nbsp;さんの行きたい</p>
+        <p><span class="fwb">店名</span>：<%= results[i].Api.name %></p>
+        <p><span class="fwb">行きたいを押した日</span>：<%= results[i].User.createdAt %></p>
         <% if(req.session.user.id !== results[i].User.id){ %>
-          <button style="background-color: red;" onclick="like_click('<%= results[i].Api.id %>','<%= results[i].User.id %>','<%= results[i].User.name %>','<%= results[i].id %>')">この人と一緒に行く</button>
+          <button class="go_btn" onclick="like_click('<%= results[i].Api.id %>','<%= results[i].User.id %>','<%= results[i].User.name %>','<%= results[i].id %>')">この人と一緒に行く</button>
         <% } %>
       </div >
     <% } %>
     <script>
-      let like_click = (id, user_id, name, like_id) => {
-        let check = confirm(`${name}さんにいいねしますか？`);
+      let like_click = (id, user_id, name, like_id)=> {
+        let check = confirm(`${name}さんと一緒にラーメンを食べに行きますか？`);
         if(check == true) {
         // OKなら移動
         location.href = `/match?id=${id}&user_id=${user_id}&like_id=${like_id}`;
