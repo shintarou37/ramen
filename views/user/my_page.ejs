@@ -1,12 +1,18 @@
 <%- include('../partical/head') -%>
 <body>
   <%- include('../partical/header') -%>
-  <div>
-    <p class="user_name"><span class="fwb"><%= req.session.user.name %></span>&nbsp;さんのマイページです</p>
-    <% for(let i = 0; i < results.length; i++){ %> %>
-      <p><%= results[i].Api.name %>というお店でマッチしました。</p>
-      <a href="/message/<%= results[i].id %>">トークルームへ行く</a>
-    <% } %>
+  <div class="user_parent">
+    <div class="my_page_child">
+      <p class="user_name"><span class="fwb"><%= req.session.user.name %></span>&nbsp;さんのマイページです</p>
+      <p><span class="fwb"><%= results.length %></span>&nbsp;件のマッチがあります。</p>
+      <% for(let i = 0; i < results.length; i++){ %>
+        <div class="match_info">
+          <a href="<%= results[i].Api.url %>" target="_blank"><%= results[i].Api.name %></a>&nbsp;でマッチしました。
+          <a href="/message/<%= results[i].id %>">トークルームへ行く</a>
+        </div>
+      <% } %>
+    </div>
+    
   </div>
   <footer>
   </footer>

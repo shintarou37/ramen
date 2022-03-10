@@ -227,6 +227,20 @@ header{
 }
 
 /* user/my_page */
+.my_page_child{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  width: 500px;
+}
+.match_info{
+  margin: 20px 0;
+  border-bottom: #fa0 solid;
+  padding-bottom: 10px;
+  text-align: left;
+}
 .user_name{
   text-align: center;
 }
