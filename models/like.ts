@@ -56,12 +56,23 @@ export default class Like extends Model {
   }
   public static get(id: string) {
     return this.findAll({
+      attributes:['id'],
       where: { 
         api_id : id
       },
       include: [
-        {model: User, required: true},
-        {model: Api, required: true}
+        {model: User, 
+          attributes: [
+            'id',
+            'name',
+            [Sequelize.fn('date_format', Sequelize.col('User.createdAt'), '%Y年%m月%d日'), 'createdAt'],
+          ],
+          required: true,
+        },
+        {model: Api,
+          attributes: ['id','name'],
+          required: true
+        }
       ]
     }).then((results: any)=> {
       return results;
