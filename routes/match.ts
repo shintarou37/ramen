@@ -16,8 +16,11 @@ router.get('/', session.login_confirmation, (req: express.Request, res: express.
 // マイページ
 router.get('/index/:id', session.login_confirmation, (req: express.Request, res: express.Response, next: express.NextFunction) => {
     (async () => {
-        let user_id: number = Number(req.params.id);
-        let results = await models.default.Match.getMypage(user_id);
+        const user_id: number = Number(req.params.id);
+        const results = await models.default.Match.getMypage(user_id);
+        if(!results){
+            return next();
+        }
         res.render('user/my_page', {req: req, results: results});
     })();
 });

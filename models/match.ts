@@ -1,4 +1,4 @@
-import { Sequelize, Model, DataTypes, Association ,Op} from 'sequelize';
+import { Sequelize, Model, DataTypes, Op} from 'sequelize';
 import Api from './api';
 import Message from './message';
 import User from './user';
@@ -58,6 +58,7 @@ export default class Match extends Model {
   }
   public static getMypage(user_id: number) {
     return this.findAll({
+      attributes: ['id'],
       where: { 
         [Op.or]: [
           {giver_id: user_id},
@@ -65,16 +66,25 @@ export default class Match extends Model {
         ]
       },
       include: [
-        {model: User, required: false, as: 'Giver',
-          where: {id: {[Op.ne]: user_id}}
+        {model: User, as: 'Giver',
+          attributes: ['name'],
+          where: {id: {[Op.ne]: user_id}},
+          required: false
         },
-        {model: User, required: false, as: 'Receiver',
-          where: {id: {[Op.ne]: user_id}}
+        {model: User, as: 'Receiver',
+          attributes: ['name'],
+          where: {id: {[Op.ne]: user_id}},
+          required: false
         },
-        {model: Api, required: true}
+        {model: Api, 
+          attributes: ['id','url','name'],
+          required: true
+        }
       ]
-    }).then((results: any)=>{
+    }).then((results: any)=> {
       return results;
+    }).catch(()=> {
+      return false;
     })
   }
   public static register(req: any){
