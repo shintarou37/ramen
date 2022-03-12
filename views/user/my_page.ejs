@@ -5,9 +5,17 @@
     <div class="my_page_child">
       <p class="user_name"><span class="fwb"><%= req.session.user.name %></span>&nbsp;さんのマイページです</p>
       <p><span class="fwb"><%= results.length %></span>&nbsp;件のマッチがあります。</p>
-      <% for(let i = 0; i < results.length; i++){ %>
+      <% for(let i = 0; i < results.length; i++){
+        let user;
+        if(results[i].Giver){
+          user = results[i].Giver.name;
+        }
+        else if(results[i].Receiver){
+          user = results[i].Receiver.name;
+        }
+      %>
         <div class="match_info">
-          <a href="<%= results[i].Api.url %>" target="_blank"><%= results[i].Api.name %></a>&nbsp;でマッチしました。
+          <a href="<%= results[i].Api.url %>" target="_blank"><%= results[i].Api.name %></a>&nbsp;で<span class="fwb">&nbsp;<%= user %></span>&nbsp;さんとマッチしました。
           <a href="/message/<%= results[i].id %>">トークルームへ行く</a>
         </div>
       <% } %>
