@@ -56,7 +56,7 @@ export default class Match extends Model {
     this.belongsTo(User, { foreignKey: 'receiver_id', as: 'Receiver'});
     this.hasMany(Message, { foreignKey: 'match_id'});
   }
-  public static index(user_id: number) {
+  public static getMypage(user_id: number) {
     return this.findAll({
       where: { 
         [Op.or]: [

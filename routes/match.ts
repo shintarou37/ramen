@@ -17,7 +17,7 @@ router.get('/', session.login_confirmation, (req: express.Request, res: express.
 router.get('/index/:id', session.login_confirmation, (req: express.Request, res: express.Response, next: express.NextFunction) => {
     (async () => {
         let user_id: number = Number(req.params.id);
-        let results = await models.default.Match.index(user_id);
+        let results = await models.default.Match.getMypage(user_id);
         res.render('user/my_page', {req: req, results: results});
     })();
 });
