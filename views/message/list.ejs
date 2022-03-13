@@ -14,11 +14,11 @@
       <p><%= result.Messages[i].User.name %></p>
     <% } %>
   </div>
-  <form  action="/message/<%= result.id %>" method="post">
-    <input type="text" name="content" value="" minlength="1" maxlength="250" required placeholder="メッセージを入力">
-    <input type="submit" value="送信">
   </form>
-  <footer>
+  <footer class="message_footer">
+    <form action="/message/<%= result.id %>" method="post" class="message_form">
+      <textarea class="message_content" name="content" value="" minlength="1" maxlength="250" required placeholder="メッセージを入力"></textarea>
+      <input class="message_submit" type="submit" value="送信">
   </footer>
 </body>
 </html>
